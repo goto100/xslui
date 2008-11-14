@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="gb2312"?>
+<?xml-stylesheet type="text/xsl" href="i18n.xsl"?>
 <i18n>
-	
+	<hello>Tom</hello>
+	<welcome>
+		<to>
+			<china />
+		</to>
+	</welcome>
 </i18n>

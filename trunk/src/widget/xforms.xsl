@@ -6,7 +6,7 @@
 	<!ENTITY lb-corner	"&#9492;">
 ]>
 <xsl:stylesheet version="1.0"
-	xmlns:lang="huan-lang"
+	xmlns:lang="http://imyui.cn/i18n-xsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:exslt="http://exslt.org/common"
 	xmlns:html="http://www.w3.org/1999/xhtml"
