@@ -1,1 +1,44 @@
 <?xml version="1.0" encoding="gb2312"?>
+<?xml-stylesheet type="text/xsl" href="tree-select.xsl"?>
+<category>
+	<title>根类</title>
+	<category>
+		<title>一层子类1</title>
+		<category>
+			<title>二层子类1</title>
+		</category>
+		<category>
+			<title>二层子类2</title>
+		</category>
+	</category>
+	<category>
+		<title>一层子类2</title>
+		<subcategory>
+			<title>唯一子类</title>
+			<category>
+				<title>子类</title>
+				<category>
+					<title>唯一子类</title>
+				</category>
+			</category>
+			<category>
+				<title>子类</title>
+			</category>
+			<category>
+				<title>子类</title>
+			</category>
+		</subcategory>
+	</category>
+	<category>
+		<title>最后子类</title>
+		<category>
+			<title>最后子类</title>
+		</category>
+		<category>
+			<title>最后子类</title>
+		</category>
+		<category>
+			<title>最后子类</title>
+		</category>
+	</category>
+</category>
