@@ -7,7 +7,7 @@
 >
 
 	<xsl:import href="../../src/widget/pagebar.xsl" />
-	<xsl:import href="../../src/lang.xsl" />
+	<xsl:import href="../../src/i18n.xsl" />
 
 	<xsl:output method="html" />
 
