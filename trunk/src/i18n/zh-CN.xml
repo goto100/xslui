@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="gb2312"?>
+<dictionary xml:lang="zh-cn"
+	xmlns:lang="huan-lang"
+	xmlns="huan-lang"
+>
+	<item prefix="category" namespace-uri="huan-category" />
+	<item prefix="user" namespace-uri="huan-user" />
+	<item prefix="file" namespace-uri="huan-file" />
+	<item prefix="search" namespace-uri="huan-search" />
+	<item prefix="statistics" namespace-uri="huan-statistics" />
+
+	<label id="search:key">关键字</label>
+
+	<label id="category:title">名称</label>
+	<label id="category:parent">父类</label>
+	<label id="category:url">URL</label>
+
+	<label id="file:src">文件</label>
+	<label id="file:size">大小</label>
+
+	<label id="user:user">用户</label>
+	<label id="user:registrationDate">注册时间</label>
+	<label id="user:logins.total">登录次数</label>
+	<label id="user:lastLoggedIn">最后登录</label>
+	<label id="user:username">用户名</label>
+	<label id="user:username.like" ref="user:username" />
+	<label id="user:password">密码</label>
+	<label id="user:passwordConfirm">确认密码</label>
+	<label id="user:name">姓名</label>
+	<label id="user:email">E'mail</label>
+	<label id="user:phone">电话号码</label>
+	<label id="user:address">地址</label>
+	<label id="user:postcode">邮政编码</label>
+	<label id="user:account.integral">积分</label>
+	<label id="user:account.balance">余额</label>
+	<label id="user:roles">拥有角色</label>
+	<label id="user:urls">可访问URL</label>
+	<label id="user:role">角色</label>
+
+	<label id="title">标题</label>
+	<label id="description">描述</label>
+	<label id="category">分类</label>
+	<label id="summary">摘要</label>
+	<label id="content">内容</label>
+	<label id="type">类型</label>
+	<label id="date">日期</label>
+	<label id="time">时间</label>
+	<label id="statistics">统计</label>
+	<label id="lastUpdate">最后更新</label>
+	<label id="password">密码</label>
+	<label id="setting">设置</label>
+	<label id="config">配置</label>
+	<label id="views">点击量</label>
+	<label id="permission">权限</label>
+	<label id="passwordConfirm">确认密码</label>
+	<label id="verificationCode">验证码</label>
+	<label id="period">时期</label>
+	<label id="period.start">开始时间</label>
+	<label id="period.end">结束时间</label>
+	<label id="date.start">开始时间</label>
+	<label id="date.end">结束时间</label>
+	<label id="page.first">首页</label>
+	<label id="page.last">末页</label>
+	<label id="page.previous">上一页</label>
+	<label id="page.next">下一页</label>
+	<label id="page.nth">第<label name="index" />页</label>
+
+	<label id="all">所有</label>
+	<label id="none">没有</label>
+	<label id="empty">空</label>
+	<label id="true">真</label>
+	<label id="false">假</label>
+	<label id="yes">是</label>
+	<label id="no">否</label>
+	<label id="enabled">开启</label>
+	<label id="enabled.true">已开启</label>
+	<label id="enabled.false">未开启</label>
+	<label id="closed">关闭</label>
+	<label id="closed.true">已关闭</label>
+	<label id="closed.false">未关闭</label>
+	<label id="opened">开通</label>
+	<label id="opened.true">已开通</label>
+	<label id="opened.false">未开通</label>
+	<label id="used">使用</label>
+	<label id="used.true">已使用</label>
+	<label id="used.false">未使用</label>
+	<label id="published">发布</label>
+	<label id="published.true">已发布</label>
+	<label id="published.false">未发布</label>
+
+	<label id="post">发布</label>
+	<label id="add">添加</label>
+	<label id="create">建立</label>
+	<label id="edit">编辑</label>
+	<label id="modify">修改</label>
+	<label id="view">查看</label>
+	<label id="delete">删除</label>
+	<label id="process">处理</label>
+	<label id="recover">还原</label>
+	<label id="recharge">充值</label>
+	<label id="submit">提交</label>
+	<label id="confirm">确认</label>
+	<label id="search">搜索</label>
+	<label id="moveUp">上移</label>
+	<label id="moveDown">下移</label>
+	<label id="select-all">全选</label>
+
+</dictionary>
