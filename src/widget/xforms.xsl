@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xsl:stylesheet [
+	<!ENTITY empty		"&#12288;">
+	<!ENTITY v-line		"&#9474;">
+	<!ENTITY i-line		"&#9500;">
+	<!ENTITY lb-corner	"&#9492;">
+]>
 <xsl:stylesheet version="1.0"
 	xmlns:lang="huan-lang"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -71,14 +77,16 @@
 		<xsl:param name="name" />
 		<xsl:param name="attribute" />
 		<xsl:param name="ref" select="." />
-
-		<label>
+		<xsl:param name="content">
 			<xsl:apply-templates select="." mode="lang:label">
 				<xsl:with-param name="name" select="$name" />
 				<xsl:with-param name="attribute" select="$attribute" />
 			</xsl:apply-templates>
-			<xsl:text>: </xsl:text>
-		</label>
+		</xsl:param>
+
+		<xsl:if test="$content != ''">
+			<label><xsl:value-of select="$content" />: </label>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template name="xforms:hint">
@@ -123,6 +131,44 @@
 				<hint><xsl:value-of select="$hint.content" /></hint>
 			</xsl:if>
 		</item>
+	</xsl:template>
+
+	<xsl:template match="*" mode="xforms:item.tree">
+		<xsl:param name="tree" select="/.." />
+		<xsl:param name="child-prefix" />
+		<xsl:variable name="_item">
+			<xsl:apply-templates select="." mode="xforms:item" />
+		</xsl:variable>
+		<xsl:variable name="item" select="exslt:node-set($_item)/xforms:item" />
+
+		<item>
+			<xsl:if test="$item/xforms:label">
+				<label>
+					<xsl:value-of select="$child-prefix" />
+					<xsl:choose>
+						<xsl:when test="not(parent::*[count(.|$tree) = count($tree)])" />
+						<xsl:when test="position() = last()">&lb-corner; </xsl:when>
+						<xsl:otherwise>&i-line; </xsl:otherwise>
+					</xsl:choose>
+					<xsl:value-of select="$item/xforms:label" />
+				</label>
+			</xsl:if>
+			<xsl:copy-of select="$item/xforms:value" />
+			<xsl:copy-of select="$item/xforms:hint" />
+		</item>
+
+		<xsl:apply-templates select="*[count(.|$tree) = count($tree)]" mode="xforms:item.tree">
+			<xsl:with-param name="tree" select="$tree" />
+			<xsl:with-param name="child-prefix">
+				<xsl:value-of select="$child-prefix" />
+				<xsl:choose>
+					<xsl:when test="not(parent::*[count(.|$tree) = count($tree)])" />
+					<xsl:when test="position() = last()">&empty;</xsl:when>
+					<xsl:otherwise>&v-line;</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:apply-templates>
+
 	</xsl:template>
 
 	<xsl:template name="xforms:choices">
@@ -281,6 +327,7 @@
 		<xsl:param name="items.node" />
 		<xsl:param name="items.text" />
 		<xsl:param name="items.form" />
+		<xsl:param name="items.tree" />
 		<xsl:param name="items">
 			<xsl:if test="$with-none">
 				<xforms:item>
@@ -324,6 +371,11 @@
 							<xsl:with-param name="value.content" select="." />
 						</xsl:call-template>
 					</xsl:for-each>
+				</xsl:when>
+				<xsl:when test="$items.tree">
+					<xsl:apply-templates select="." mode="xforms:item.tree">
+						<xsl:with-param name="tree" select="$items.tree" />
+					</xsl:apply-templates>
 				</xsl:when>
 				<xsl:when test="$items.node">
 					<xsl:apply-templates select="$items.node" mode="xforms:item">

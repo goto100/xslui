@@ -12,7 +12,7 @@
 		<xsl:param name="attribute" />
 		<xsl:param name="isEnd" select="true()" />
 
-		<xsl:if test="namespace-uri(../..) != 'http://www.w3.org/2002/xforms'">
+		<xsl:if test="../.. and namespace-uri(../..) != 'http://www.w3.org/2002/xforms'">
 			<xsl:apply-templates select=".." mode="xforms:xpath">
 				<xsl:with-param name="attribute" select="$attribute" />
 				<xsl:with-param name="isEnd" select="false()" />
@@ -36,7 +36,7 @@
 	<xsl:template match="@*" mode="xforms:xpath">
 		<xsl:param name="attribute" />
 
-		<xsl:if test="namespace-uri(../..) != 'http://www.w3.org/2002/xforms'">
+		<xsl:if test="../.. and namespace-uri(../..) != 'http://www.w3.org/2002/xforms'">
 			<xsl:apply-templates select=".." mode="xforms:xpath">
 				<xsl:with-param name="attribute" select="$attribute" />
 				<xsl:with-param name="isEnd" select="false()" />
@@ -61,7 +61,7 @@
 	<xsl:template match="node() | @*" mode="xforms:id">
 		<xsl:param name="attribute" />
 
-		<xsl:if test="namespace-uri(..) != 'http://www.w3.org/2002/xforms'">
+		<xsl:if test="../.. and namespace-uri(..) != 'http://www.w3.org/2002/xforms'">
 			<xsl:apply-templates select=".." mode="xforms:id">
 				<xsl:with-param name="attribute" select="$attribute" />
 			</xsl:apply-templates>
