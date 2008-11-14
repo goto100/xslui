@@ -2,17 +2,8 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:exslt="http://exslt.org/common"
-	xmlns:set="http://exslt.org/sets"
 	xmlns:str="http://exslt.org/strings"
-	xmlns:xforms="http://www.w3.org/2002/xforms"
-	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	xmlns:page="huan-page"
-	xmlns:search="huan-search"
-	xmlns:user="huan-user"
-	xmlns:cate="huan-category"
 	xmlns:lang="huan-lang"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns="http://www.w3.org/1999/xhtml"
 >
 
 	<xsl:template match="lang:label">
