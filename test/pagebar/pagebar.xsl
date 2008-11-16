@@ -54,7 +54,7 @@
 			color:#666;
 		}
 	</style>
-		
+		<a href="pagebar.xsl">XSL</a>
 		<h2>д╛хо</h2>
 		<pre><![CDATA[
 			<xsl:call-template name="ui:pagebar">

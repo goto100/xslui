@@ -78,10 +78,10 @@
 		<xsl:param name="attribute" />
 		<xsl:param name="ref" select="." />
 		<xsl:param name="content">
-			<xsl:apply-templates select="." mode="lang:label">
+			<xsl:call-template name="lang:label">
 				<xsl:with-param name="name" select="$name" />
 				<xsl:with-param name="attribute" select="$attribute" />
-			</xsl:apply-templates>
+			</xsl:call-template>
 		</xsl:param>
 
 		<xsl:if test="$content != ''">

@@ -1,1 +1,23 @@
-<?xml version="1.0" encoding="gb2312"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="datagrid.xsl"?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+>
+	<rdf:Description id="1">
+		<dc:title>标题1</dc:title>
+	</rdf:Description>
+
+	<rdf:Description id="2">
+		<dc:title>标题2</dc:title>
+	</rdf:Description>
+
+	<rdf:Description id="3">
+		<dc:title>标题3</dc:title>
+	</rdf:Description>
+
+	<rdf:Description id="4">
+		<dc:title>标题4</dc:title>
+	</rdf:Description>
+
+</rdf:RDF>
