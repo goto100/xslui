@@ -11,6 +11,7 @@
 	<xsl:output method="html" />
 
 	<xsl:template match="/category">
+		<a href="tree-select.xsl">XSL</a>
 		<xsl:call-template name="xforms:select1">
 			<xsl:with-param name="items.tree" select="descendant-or-self::category | descendant-or-self::subcategory" />
 		</xsl:call-template>
