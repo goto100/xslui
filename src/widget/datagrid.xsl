@@ -13,30 +13,10 @@
 	<xsl:import href="pagebar.xsl" />
 
 	<xsl:template name="ui:datagrid">
-		<xsl:param name="config">
-			<datagrid segmental="false">
-				<operation name="edit" />
-				<operation name="delete" />
-			</datagrid>
-		</xsl:param>
-		<xsl:param name="cfg" select="exslt:node-set($config)/*" />
-		<xsl:param name="segmental" select="$cfg/@segmental = 'true'" />
-		<xsl:param name="operations" select="$cfg/operation" />
+		<xsl:param name="segmental" select="false()" />
+		<xsl:param name="selectable" select="false()" />
+		<xsl:param name="operations" select="/.." />
 		<xsl:param name="items" select="/.." />
-
-		<xsl:variable name="tbody">
-			<xsl:variable name="__tbody">
-				<xsl:apply-templates select="$items" />
-			</xsl:variable>
-			<xsl:variable name="_tbody" select="exslt:node-set($__tbody)" />
-			<xsl:for-each select="$_tbody/html:tr">
-				<tr>
-					<xsl:for-each select="html:td | html:th">
-						<td><xsl:value-of select="." /></td>
-					</xsl:for-each>
-				</tr>
-			</xsl:for-each>
-		</xsl:variable>
 
 		<form class="datagrid" action="">
 			<xsl:if test="$segmental">
@@ -48,7 +28,9 @@
 			<table>
 				<thead>
 					<tr>
-
+						<xsl:if test="$selectable">
+							
+						</xsl:if>
 					</tr>
 				</thead>
 				<tfoot>
@@ -57,7 +39,17 @@
 					</tr>
 				</tfoot>
 				<tbody>
-					<xsl:copy-of select="$tbody" />
+					<xsl:variable name="_tbody">
+						<xsl:apply-templates select="$items" />
+					</xsl:variable>
+					<xsl:variable name="tbody" select="exslt:node-set($_tbody)" />
+					<xsl:for-each select="$tbody/html:tr">
+						<tr>
+							<xsl:for-each select="html:td | html:th">
+								<td><xsl:value-of select="." /></td>
+							</xsl:for-each>
+						</tr>
+					</xsl:for-each>
 				</tbody>
 			</table>
 		</form>
