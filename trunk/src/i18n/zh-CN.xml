@@ -3,11 +3,38 @@
 	xmlns:lang="huan-lang"
 	xmlns="huan-lang"
 >
-	<item prefix="category" namespace-uri="huan-category" />
-	<item prefix="user" namespace-uri="huan-user" />
-	<item prefix="file" namespace-uri="huan-file" />
-	<item prefix="search" namespace-uri="huan-search" />
-	<item prefix="statistics" namespace-uri="huan-statistics" />
+	<item prefix="local" namespace-uri="http://imyui/xslui/localize" />
+	<item prefix="category" namespace-uri="http://imyui/xslui/category" />
+	<item prefix="user" namespace-uri="http://imyui/xslui/user" />
+	<item prefix="file" namespace-uri="http://imyui/xslui/file" />
+	<item prefix="search" namespace-uri="http://imyui/xslui/search" />
+
+	<label id="local:sunday">星期日</label>
+	<label id="local:monday">星期一</label>
+	<label id="local:tuesday">星期二</label>
+	<label id="local:wednesday">星期三</label>
+	<label id="local:thursday">星期四</label>
+	<label id="local:friday">星期五</label>
+	<label id="local:saturday">星期六</label>
+	<label id="local:morning">上午</label>
+	<label id="local:afternoon">下午</label>
+	<label id="local:yesterday">昨天</label>
+	<label id="local:today">今天</label>
+	<label id="local:tomorrow">明天</label>
+	<label id="local:dayAfterTomorrow">后天</label>
+	<label id="local:second">秒</label>
+	<label id="local:seconds">秒</label>
+	<label id="local:minute">分钟</label>
+	<label id="local:minutes">分钟</label>
+	<label id="local:hour">分钟</label>
+	<label id="local:hours">分钟</label>
+	<label id="local:day">日</label>
+	<label id="local:days">日</label>
+	<label id="local:month">月</label>
+	<label id="local:months">月</label>
+	<label id="local:year">年</label>
+	<label id="local:years">年</label>
+	<label id="local:date">日期</label>
 
 	<label id="search:key">关键字</label>
 

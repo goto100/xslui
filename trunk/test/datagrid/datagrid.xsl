@@ -14,22 +14,12 @@
 
 	<xsl:output method="html" />
 
-	<xsl:template match="/rdf:RDF">
+	<xsl:template match="rdf:RDF">
 		<xsl:call-template name="ui:datagrid">
-			<xsl:with-param name="config">
-				<datagrid segmental="true">
-					<operation name="delete" />
-					<operation name="close" />
-				</datagrid>
-			</xsl:with-param>
+			<xsl:with-param name="segmental" select="true()" />
+			<xsl:with-param name="selectable" select="true()" />
 			<xsl:with-param name="items" select="rdf:Description" />
 		</xsl:call-template>
-	</xsl:template>
-
-	<xsl:template match="rdf:Description">
-		<tr>
-			<th><xsl:value-of select="dc:title" /></th>
-		</tr>
 	</xsl:template>
 
 </xsl:stylesheet>
