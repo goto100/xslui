@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="gb2312"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -14,34 +14,47 @@
 
 	<xsl:output method="html" />
 
-	<xsl:param name="ui:selectable" select="true()" />
+	<xsl:template match="/">
+		<html>
+			<head>
+				<link type="text/css" rel="stylesheet" href="../../style/admin-huan.css" />
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+		<body>
+			<xsl:apply-templates />
+		</body>
+		</html>
+	</xsl:template>
 
 	<xsl:template match="rdf:RDF">
 		<xsl:call-template name="ui:datagrid">
 			<xsl:with-param name="segmental" select="true()" />
-			<xsl:with-param name="selectable" select="$ui:selectable" />
-			<xsl:with-param name="cols">
+			<xsl:with-param name="selectable" select="true()" />
+			<xsl:with-param name="cols-node">
 				<ui:col name="title" />
 				<ui:col name="edit" class="operation" />
 				<ui:col name="date" />
 				<ui:col name="delete" class="operation" />
 			</xsl:with-param>
-			<xsl:with-param name="operations">
+			<xsl:with-param name="operations-node">
 				<ui:operation name="update" action="?update" />
 				<ui:operation name="delete" action="?delete" />
 			</xsl:with-param>
-			<xsl:with-param name="items">
-				<xsl:apply-templates select="rdf:Description" />
+			<xsl:with-param name="rows-node">
+				<xsl:apply-templates select="rdf:Description" mode="ui:datagrid-rows" />
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="rdf:Description">
+	<xsl:template match="rdf:Description" mode="ui:datagrid-rows">
 		<xsl:call-template name="ui:datagrid-row">
-			<xsl:with-param name="selectable" select="$ui:selectable" />
-			<xsl:with-param name="operations">
+			<xsl:with-param name="selectable" select="position() mod 2 = 1" />
+			<xsl:with-param name="operations-node">
 				<ui:operation name="edit" action="?edit&amp;id={@id}" />
 				<ui:operation name="delete" action="?delete&amp;id={@id}" />
+			</xsl:with-param>
+			<xsl:with-param name="cells-node">
+				<xsl:apply-templates select="dc:title" mode="ui:datagrid-cell" />
+				<xsl:apply-templates select="dc:date" mode="ui:datagrid-cell" />
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
