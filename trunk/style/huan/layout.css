@@ -1,0 +1,45 @@
+@charset "utf-8";
+/**
+* @version	0.1a
+* @author	goto100@gmail.com
+*/
+
+
+/**
+* Layouts
+*/
+html {
+}
+
+#header {
+	height: 80px;
+	margin-bottom: 10px;
+	padding: 10px;
+	background: #3465a4 url(../res/bg.png) repeat-x center top;
+}
+	#logo {
+		float: left;
+		margin-right: 10px;
+	}
+
+#wrapper {
+	height: 100%;
+}
+#main {
+	margin: 0 auto 10px auto;
+	height: 100%;
+}
+
+#sidebar {
+	float: left;
+	width: 170px;
+}
+
+#footer {
+	clear: both;
+	height: 80px;
+	font-size: 10.5pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: center;
+	color: #666;
+}

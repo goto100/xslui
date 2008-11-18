@@ -6,18 +6,22 @@
 >
 	<rdf:Description id="1">
 		<dc:title>标题1</dc:title>
+		<dc:date>1999-03-05T13:21</dc:date>
 	</rdf:Description>
 
 	<rdf:Description id="2">
 		<dc:title>标题2</dc:title>
+		<dc:date>2008-03-05T13:21</dc:date>
 	</rdf:Description>
 
 	<rdf:Description id="3">
 		<dc:title>标题3</dc:title>
+		<dc:date>2003-03-05T13:21</dc:date>
 	</rdf:Description>
 
 	<rdf:Description id="4">
 		<dc:title>标题4</dc:title>
+		<dc:date>2008-04-05T13:21</dc:date>
 	</rdf:Description>
 
 </rdf:RDF>

@@ -1,0 +1,22 @@
+ol.ranking li {
+	position: relative;
+}
+ol.ranking *.index {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 18px;
+	height: 20px;
+	padding-left: 2px;
+	color: #fff;
+	background: url(../images/res/rankIndex.gif) no-repeat left -60px;
+}
+ol.ranking li.first *.index {
+	background-position: left top;
+}
+ol.ranking li.second *.index {
+	background-position: left -20px;
+}
+ol.ranking li.third *.index {
+	background-position: left -40px;
+}

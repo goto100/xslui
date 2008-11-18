@@ -1,0 +1,56 @@
+div.input,
+div.secret,
+div.range,
+div.select,
+div.select1,
+div.textarea {
+	display: inline-block;
+}
+div.select1 ul li {
+	list-style-type: none;
+}
+p.hint {
+	display: inline;
+	margin-left: 10px;
+	font-size: 9pt;
+	color: #666666;
+}
+
+
+
+
+form.xforms2 div.input,
+form.xforms2 div.secret,
+form.xforms2 div.range,
+form.xforms2 div.select,
+form.xforms2 div.select1,
+form.xforms2 div.textarea {
+	display: block;
+	margin-bottom: 0.5em;
+	font-size: 12px;
+}
+form.xforms2 div.input > label,
+form.xforms2 div.secret > label,
+form.xforms2 div.range > label,
+form.xforms2 div.select > label,
+form.xforms2 div.select1 > label,
+form.xforms2 div.textarea > label {
+	display: inline-block;
+	width: 200px;
+	text-align: right;
+}
+form.xforms2 div.input input,
+form.xforms2 div.secret input,
+form.xforms2 div.select1 select,
+form.xforms2 div.select1 ul,
+form.xforms2 div.textarea textarea {
+	display: inline-block;
+	margin: 0;
+}
+form.xforms2 div.select1 ul {
+	#display: inline;
+}
+form.xforms2 input[type=submit] {
+	margin-left: 200px;
+}
+

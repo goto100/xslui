@@ -1,0 +1,129 @@
+table.list {
+	width:100%;
+	clear: both;
+	font-size: 10.5pt;
+}
+table.list col.selection {
+	width: 24px;
+}
+table.list col.operation {
+	width: 24px;
+}
+table.list thead {
+	background-color: #CAE8EA;
+}
+table.list thead th {
+	padding: 4px 0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #467;
+	text-align: center;
+	font-weight: normal;
+	border-top: 1px solid #C1DAD7;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+}
+table.list thead th.selection {
+	
+}
+table.list thead th.operation {
+	text-indent: -9999px;
+}
+table.list tfoot {
+	
+}
+table.list tfoot tr {
+	line-height: 24px;
+	background-color: #A3D6DA;
+}
+table.list tfoot td {
+	padding-right: 10px;
+	text-align: right;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+}
+table.list tbody {
+	
+}
+table.list tbody tr {
+	line-height: 24px;
+}
+table.list tbody tr.even {
+	background-color: #F3F3F3;
+}
+table.list tbody tr:hover {
+	background-color: #DCDCDC;
+}
+table.list tbody tr.selected {
+	background-color: #DCDCDC;
+}
+table.list tbody th,
+table.list tbody td {
+	padding: 0 4px;
+	text-align: left;
+	font-weight: normal;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+}
+table.list tbody th {
+	background-color: #F6F6F6;
+}
+table.list tbody th.selection {
+	text-align: center;
+}
+table.list tbody tr.even th {
+	background-color: #F0F0F0;
+}
+table.list tbody tr:hover th {
+	background-color: #DCDCDC;
+}
+table.list tbody tr.selected th {
+	background-color: #DCDCDC;
+}
+table.list tbody th a {
+	display: block;
+	color: #666666;
+}
+table.list tbody td.operation {
+	padding: 4px;
+}
+table.list tbody td.operation a {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	outline: none;
+}
+table.list tbody td.add a {
+	background-image: url(res/add.png);
+}
+table.list tbody td.edit a {
+	background-image: url(res/pencil.png);
+}
+table.list tbody td.recover a {
+	background-image: url(res/tick.png);
+}	
+table.list tbody td.delete a {
+	background-image: url(res/cross.png);
+}
+table.list tbody td.view a,
+table.list tbody td.process a {
+	background-image: url(res/eye.png);
+}
+table.list tbody td.statistics a {
+	background-image: url(res/chart_bar.png);
+}
+table.list tbody td.moveUp a {
+	background-image: url(res/arrow_up.png);
+}
+table.list tbody td.moveDown a {
+	background-image: url(res/arrow_down.png);
+}
+table.list tr.enabled td.state a {
+	background-image: url(res/accept.png);
+}
+table.list tr.disabled td.state a {
+	background-image: url(res/cancel.png);
+}

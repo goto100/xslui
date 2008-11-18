@@ -1,0 +1,36 @@
+ol.steps .step {
+	padding-left: 35px;
+	background-color: #fff;
+	background-image: url(../images/res/steps_gray.gif);
+	background-repeat: no-repeat;
+}
+ol.steps a.step:hover {
+	background-image: url(../images/res/steps.gif);
+}
+ol.steps .selected {
+	background-image: url(../images/res/steps.gif);
+}
+ol.steps .first {
+	background-position: 2px 5px;
+}
+ol.steps .second {
+	background-position: 2px -25px;
+}
+ol.steps .third {
+	background-position: 2px -55px;
+}
+ol.steps .fourth {
+	background-position: 2px -85px;
+}
+ol.steps .fifth {
+	background-position: 2px -115px;
+}
+ol.steps .sixth {
+	background-position: 2px -145px;
+}
+ol.steps .seventh {
+	background-position: 2px -175px;
+}
+ol.steps .eighth {
+	background-position: 2px -205px;
+}
