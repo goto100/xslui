@@ -1,0 +1,35 @@
+div.pagebar {
+	height:16px;
+	margin-bottom: 2px;
+}
+div.pagebar * {
+	margin: 0;
+	padding: 0;
+}
+div.pagebar ul {
+	float: left;
+}
+div.pagebar li {
+	float:left;
+	height: 16px;
+	margin-left: 4px;
+	padding: 0 2px;
+	font-size: 12px;
+	text-align: center;
+	list-style-type: none;
+	border: 1px solid #CCCCCC;
+}
+div.pagebar li a {
+	display: block;
+	text-decoration: none;
+}
+div.pagebar p.previous,
+div.pagebar p.next {
+	display:block;
+	float:left;
+	text-indent:-9999px;
+}
+div.pagebar p.total {
+	float:right;
+	color:#666;
+}

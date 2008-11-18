@@ -1,0 +1,55 @@
+table.calendar {
+	border-collapse: collapse;
+	border-top: 1px solid #cdd;
+	border-left: 1px solid #cdd;
+	font-size:12px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	text-align:center;
+}
+table.calendar caption {
+	padding: 0 0 5px 0;
+	font-style: italic;
+	text-align: right;
+}
+table.calendar th,
+table.calendar td {
+	border-right: 1px solid #cdd;
+	border-bottom: 1px solid #cdd;
+}
+table.calendar .weekend {
+	color: #f90;
+}
+table.calendar thead th {
+	padding: 5px 8px;
+	color: #699;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	background-color: #cee;
+}
+table.calendar tbody td {
+	line-height: 22px;
+	color: #467;
+}
+table.calendar tbody td.hasBlog {
+	background:url(res/orange-corner.png) no-repeat 1px 1px;
+}
+table.calendar tbody td a {
+	display: block;
+	color: #000;
+}
+table.calendar tbody td .amount {
+	float: right;
+	margin-top: -28px;
+	font-size: 9px;
+	color: #ccc;
+}
+table.calendar tbody td.holiday {
+	font-weight: bold;
+	color: #f30;
+}
+table.calendar tbody td.nextWeek,
+table.calendar tbody td.previousWeek {
+	color: #999;
+	background-color: #eee;
+}

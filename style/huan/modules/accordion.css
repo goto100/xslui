@@ -1,0 +1,16 @@
+ul.accordion {
+	border: 1px solid #000;
+}
+ul.accordion li.accordionitem {
+	clear: both;
+}
+ul.accordion li.accordionitem h3.accordionlabel {
+	overflow: hidden;
+	text-align: center;
+	font-size: 14px;
+}
+ul.accordion div.accordioncontent {
+	height: 130px;
+	margin: -8px 15px 0 15px;
+	padding: 20px 10px 10px 40px;
+}

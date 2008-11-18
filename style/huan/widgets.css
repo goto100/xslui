@@ -1,0 +1,50 @@
+@charset "utf-8";
+/**
+* @version	0.1a
+* @author	goto100@gmail.com
+*/
+
+
+/**
+* Widgets
+*/
+
+body {
+	background-color: #C3D9FF;
+}
+h1 {
+	padding:5px 5px 5px 24px;
+	margin-bottom:5px;
+	font-size:12pt;
+	background-color:#FFFFFF;
+	background-position:4px center;
+	background-repeat:no-repeat;
+}
+#content {
+	padding :10px;
+}
+#header p.title {
+	font-size: 40px;
+}
+#header p.title a {
+	color: #fff;
+	text-decoration: none;
+}
+#header p.title a:hover {
+	text-decoration: underline;
+}
+#header p.state {
+	font-size: 10.5pt;
+}
+
+#nav {
+	float: right;
+}
+#nav li {
+	float: left;
+	display: inline;
+	margin-right: 10px;
+}
+#nav li a {
+	color: #fff;
+}
