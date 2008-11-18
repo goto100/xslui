@@ -15,24 +15,23 @@
 	<xsl:template name="ui:datagrid">
 		<xsl:param name="segmental" select="false()" />
 		<xsl:param name="selectable" select="false()" />
-		<xsl:param name="cols" select="/.." />
-		<xsl:param name="operations" select="/.." />
-		<xsl:param name="items" select="/.." />
+		<xsl:param name="cols-node" select="/.." />
+		<xsl:param name="operations-node" select="/.." />
+		<xsl:param name="rows-node" select="/.." />
 
-		<html>
-			<head>
-				<link type="text/css" rel="stylesheet" href="../../style/admin-huan.css" />
-			</head>
-			<body>
+		<xsl:variable name="cols" select="exslt:node-set($cols-node)/ui:col" />
+		<xsl:variable name="operations" select="exslt:node-set($operations-node)/ui:operation" />
+		<xsl:variable name="rows" select="exslt:node-set($rows-node)/ui:row" />
+
 		<form class="datagrid" action="">
 			<xsl:if test="$segmental">
 				<xsl:call-template name="ui:pagebar" />
 			</xsl:if>
-			<xsl:for-each select="exslt:node-set($operations)/*">
+			<xsl:for-each select="$operations">
 				<button type="submit" name="__action" value="{@name}.do"><xsl:value-of select="@name" /></button>
 			</xsl:for-each>
 			<table class="list">
-				<xsl:for-each select="exslt:node-set($cols)/ui:col">
+				<xsl:for-each select="$cols">
 					<col class="{@name} {@class}" />
 				</xsl:for-each>
 				<thead>
@@ -42,7 +41,7 @@
 								<input type="checkbox" name="id" value="{@id}" />
 							</th>
 						</xsl:if>
-						<xsl:for-each select="exslt:node-set($cols)/ui:col">
+						<xsl:for-each select="$cols">
 							<th><xsl:value-of select="@name" /></th>
 						</xsl:for-each>
 					</tr>
@@ -53,37 +52,34 @@
 					</tr>
 				</tfoot>
 				<tbody>
-					<xsl:copy-of select="$items" />
+					<xsl:for-each select="$rows">
+						<tr>
+							<xsl:for-each select="ui:cell">
+								<td><xsl:value-of select="." /></td>
+							</xsl:for-each>
+							<xsl:for-each select="ui:operation">
+								<td>a</td>
+							</xsl:for-each>
+						</tr>
+					</xsl:for-each>
 				</tbody>
 			</table>
 		</form>
-		</body>
-		</html>
 	</xsl:template>
 
 	<xsl:template name="ui:datagrid-row">
 		<xsl:param name="selectable" select="false()" />
-		<xsl:param name="operations" select="/.." />
+		<xsl:param name="operations-node" select="/.." />
+		<xsl:param name="cells-node" select="/.." />
 
-		<tr>
-			<xsl:attribute name="class">
-				<xsl:if test="position() mod 2 = 1">even</xsl:if>
-			</xsl:attribute>
-			<xsl:if test="$selectable">
-				<th class="selection">
-					<input type="checkbox" name="id" value="{@id}" />
-				</th>
-			</xsl:if>
-			<td>fd</td>
-			<td>fd</td>
-			<xsl:for-each select="exslt:node-set($operations)/ui:operation">
-				<td class="{@name} operation"><a href="{@action}"><xsl:value-of select="@name" /></a></td>
-			</xsl:for-each>
-		</tr>
+		<ui:row selectable="{$selectable}">
+			<xsl:copy-of select="$operations-node" />
+			<xsl:copy-of select="$cells-node" />
+		</ui:row>
 	</xsl:template>
 
-	<xsl:template name="ui:datagrid-cell">
-
+	<xsl:template match="node()" mode="ui:datagrid-cell">
+		<ui:cell name="{local-name()}"><xsl:value-of select="." /></ui:cell>
 	</xsl:template>
 
 </xsl:stylesheet>
