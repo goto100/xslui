@@ -87,11 +87,17 @@
 				<xsl:with-param name="attribute" select="$attribute" />
 			</xsl:apply-templates>
 		</xsl:param>
+		<xsl:param name="name" />
 
 		<xsl:choose>
+			<xsl:when test="$name">
+				<xsl:apply-templates select="($labels/lang:label[@id = $name])[last()]">
+					<xsl:with-param name="labels" select="$labels" />
+				</xsl:apply-templates>
+			</xsl:when>
 			<xsl:when test="count($prefix-node) = 0 and $i &gt; count($label-node)" />
 			<xsl:when test="$i &lt;= count($label-node)">
-				<xsl:variable name="name">
+				<xsl:variable name="fullname">
 					<xsl:if test="$prefix">
 						<xsl:value-of select="$prefix" />
 						<xsl:text>:</xsl:text>
@@ -101,7 +107,7 @@
 				</xsl:variable>
 
 				<xsl:variable name="text">
-					<xsl:apply-templates select="($labels/lang:label[@id = $name])[last()]">
+					<xsl:apply-templates select="($labels/lang:label[@id = $fullname])[last()]">
 						<xsl:with-param name="labels" select="$labels" />
 					</xsl:apply-templates>
 				</xsl:variable>
@@ -137,6 +143,24 @@
 				</xsl:call-template>
 			</xsl:when>
 		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template name="label">
+		<xsl:param name="labels" select="/.." />
+		<xsl:param name="name" />
+		<xsl:call-template name="lang:label">
+			<xsl:with-param name="labels-path">i18n/</xsl:with-param>
+			<xsl:with-param name="lang-name">zh-CN</xsl:with-param>
+			<xsl:with-param name="name" select="$name" />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="node() | @*" mode="lang:label">
+		<xsl:param name="labels" select="/.." />
+		<xsl:call-template name="lang:label">
+			<xsl:with-param name="labels-path">i18n/</xsl:with-param>
+			<xsl:with-param name="lang-name">zh-CN</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 
 </xsl:stylesheet>
