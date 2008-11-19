@@ -27,7 +27,9 @@
 
 	<xsl:template match="rdf:RDF">
 		<xsl:call-template name="ui:datagrid">
-			<xsl:with-param name="segmental" select="true()" />
+			<xsl:with-param name="segment-start" select="1" />
+			<xsl:with-param name="segment-end" select="20" />
+			<xsl:with-param name="segment-total" select="300" />
 			<xsl:with-param name="selectable" select="true()" />
 			<xsl:with-param name="cols-node">
 				<ui:col name="title" />

@@ -1,40 +1,12 @@
 <?xml version="1.0" encoding="gb2312"?>
 <dictionary xml:lang="zh-cn"
-	xmlns:lang="huan-lang"
-	xmlns="huan-lang"
+	xmlns:lang="http://imyui.cn/i18n-xsl"
+	xmlns="http://imyui.cn/i18n-xsl"
 >
-	<item prefix="local" namespace-uri="http://imyui/xslui/localize" />
 	<item prefix="category" namespace-uri="http://imyui/xslui/category" />
 	<item prefix="user" namespace-uri="http://imyui/xslui/user" />
 	<item prefix="file" namespace-uri="http://imyui/xslui/file" />
 	<item prefix="search" namespace-uri="http://imyui/xslui/search" />
-
-	<label id="local:sunday">星期日</label>
-	<label id="local:monday">星期一</label>
-	<label id="local:tuesday">星期二</label>
-	<label id="local:wednesday">星期三</label>
-	<label id="local:thursday">星期四</label>
-	<label id="local:friday">星期五</label>
-	<label id="local:saturday">星期六</label>
-	<label id="local:morning">上午</label>
-	<label id="local:afternoon">下午</label>
-	<label id="local:yesterday">昨天</label>
-	<label id="local:today">今天</label>
-	<label id="local:tomorrow">明天</label>
-	<label id="local:dayAfterTomorrow">后天</label>
-	<label id="local:second">秒</label>
-	<label id="local:seconds">秒</label>
-	<label id="local:minute">分钟</label>
-	<label id="local:minutes">分钟</label>
-	<label id="local:hour">分钟</label>
-	<label id="local:hours">分钟</label>
-	<label id="local:day">日</label>
-	<label id="local:days">日</label>
-	<label id="local:month">月</label>
-	<label id="local:months">月</label>
-	<label id="local:year">年</label>
-	<label id="local:years">年</label>
-	<label id="local:date">日期</label>
 
 	<label id="search:key">关键字</label>
 
@@ -118,6 +90,7 @@
 	<label id="post">发布</label>
 	<label id="add">添加</label>
 	<label id="create">建立</label>
+	<label id="update">更新</label>
 	<label id="edit">编辑</label>
 	<label id="modify">修改</label>
 	<label id="view">查看</label>
@@ -131,5 +104,36 @@
 	<label id="moveUp">上移</label>
 	<label id="moveDown">下移</label>
 	<label id="select-all">全选</label>
+
+	<label id="sunday">星期日</label>
+	<label id="monday">星期一</label>
+	<label id="tuesday">星期二</label>
+	<label id="wednesday">星期三</label>
+	<label id="thursday">星期四</label>
+	<label id="friday">星期五</label>
+	<label id="saturday">星期六</label>
+	<label id="morning">上午</label>
+	<label id="afternoon">下午</label>
+	<label id="$n.days.before">$n天前</label>
+	<label id="2.days.before">前天</label>
+	<label id="1.days.before" ref="yesterday" />
+	<label id="0.days.before" ref="today" />
+	<label id="yesterday">昨天</label>
+	<label id="today">今天</label>
+	<label id="tomorrow">明天</label>
+	<label id="dayAfterTomorrow">后天</label>
+	<label id="second">秒</label>
+	<label id="seconds">秒</label>
+	<label id="minute">分钟</label>
+	<label id="minutes">分钟</label>
+	<label id="hour">分钟</label>
+	<label id="hours">分钟</label>
+	<label id="day">日</label>
+	<label id="days">日</label>
+	<label id="month">月</label>
+	<label id="months">月</label>
+	<label id="year">年</label>
+	<label id="years">年</label>
+	<label id="date">日期</label>
 
 </dictionary>
