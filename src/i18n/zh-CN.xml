@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE dictionary [
+	<!ELEMENT label ANY >
+	<!ATTLIST label id ID #REQUIRED>
+]>
 <dictionary xml:lang="zh-cn"
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 	xmlns="http://imyui.cn/i18n-xsl"
