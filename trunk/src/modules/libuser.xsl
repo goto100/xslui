@@ -4,7 +4,6 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xforms="http://www.w3.org/2002/xforms"
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	xmlns="http://www.w3.org/1999/xhtml"
 >
 
 	<xsl:template match="user:user" mode="tree-cols">
