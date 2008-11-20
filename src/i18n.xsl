@@ -6,6 +6,9 @@
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 >
 
+	<xsl:param name="lang:labels-path">i18n/</xsl:param>
+	<xsl:param name="lang:lang-name">zh-CN</xsl:param>
+
 	<xsl:template match="lang:label">
 		<xsl:param name="labels" select="/.." />
 
@@ -70,14 +73,14 @@
 	<xsl:template name="lang:label">
 		<xsl:param name="attribute" />
 		<xsl:param name="suffix" />
-		<xsl:param name="lang-name" />
+		<xsl:param name="lang-name" select="$lang:lang-name" />
 		<xsl:param name="labels-name" />
-		<xsl:param name="labels-path" />
+		<xsl:param name="labels-path" select="$lang:labels-path" />
 		<xsl:param name="debug" select="false()" />
 
 		<xsl:param name="i" select="1" />
 		<xsl:param name="perfixIndex" select="1" />
-		<xsl:param name="labels" select="document(concat($labels-path, $lang-name, '.xml'))/* | document(concat($labels-path, $labels-name, '.', $lang-name, '.xml'))/*" />
+		<xsl:param name="labels" select="document(concat($labels-path, $lang-name, '.xml'))/*" />
 		<xsl:param name="prefix-nodes" select="ancestor-or-self::*[namespace-uri() = $labels/lang:item/@namespace-uri]" />
 		<xsl:param name="prefix-node" select="$prefix-nodes[$perfixIndex]" />
 		<xsl:param name="prefix" select="$labels/lang:item[@namespace-uri = namespace-uri($prefix-node)]/@prefix" />

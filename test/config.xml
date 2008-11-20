@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<debug>true</debug>
+	<rootPath>/xslui/</rootPath>
+	<stylePath>/xslui/style/</stylePath>
+	<language>zh-CN</language>
+</config>
