@@ -5,7 +5,6 @@
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 
 	xmlns:ui="http://imyui.cn/xslui"
-	xmlns="http://www.w3.org/1999/xhtml"
 >
 
 	<xsl:import href="../function.xsl" />

@@ -4,8 +4,6 @@
 	xmlns:exslt="http://exslt.org/common"
 	xmlns:str="http://exslt.org/strings"
 	xmlns:xforms="http://www.w3.org/2002/xforms"
-	xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
 >
 
 	<xsl:template match="node()" mode="xforms:xpath">
