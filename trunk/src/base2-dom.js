@@ -1120,9 +1120,6 @@ var Selector = Base.extend({
         ? 9 /* FIRST_ORDERED_NODE_TYPE */
         : 7 /* ORDERED_NODE_SNAPSHOT_TYPE */;
       var result = document.evaluate(this.toXPath(), context, null, type, null);
-	  //alert(context)
-	  //alert(this.toXPath())
-	  //alert(result.snapshotLength)
       return single ? result.singleNodeValue : result;
     }
   },
