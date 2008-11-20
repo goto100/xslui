@@ -11,7 +11,6 @@
 
 	xmlns:xforms="http://www.w3.org/2002/xforms"
 	xmlns:ui="http://imyui.cn/xslui"
-	xmlns="http://www.w3.org/1999/xhtml"
 >
 
 	<xsl:include href="../src/function.xsl" />
@@ -25,8 +24,7 @@
 		<html>
 			<head>
 				<link type="text/css" rel="stylesheet" href="{$config/stylePath}default.css" />
-				<script type="text/javascript" src="{$config/rootPath}src/base2.js"></script>
-				<script type="text/javascript" src="{$config/rootPath}src/base2-dom.js"></script>
+				<script type="text/javascript" src="{$config/rootPath}src/base2-dom-fp.js"></script>
 				<script type="text/javascript" src="{$config/rootPath}src/xslui.js"></script>
 			</head>
 			<body class="default">
