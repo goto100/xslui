@@ -9,7 +9,6 @@
 	xmlns:str="http://exslt.org/strings"
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 	xmlns:ui="http://imyui.cn/xslui"
-	xmlns="http://www.w3.org/1999/xhtml"
 >
 	<xsl:template name="ui:pagebar">
 		<!-- 总页数 -->

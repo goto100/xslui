@@ -22,7 +22,7 @@
 	<xsl:template match="/" mode="default">
 		<xsl:param name="config" select="document('config.xml')/*" />
 
-		<html xmlns="http://www.w3.org/1999/xhtml">
+		<html>
 			<head>
 				<link type="text/css" rel="stylesheet" href="{$config/stylePath}default.css" />
 				<script type="text/javascript" src="{$config/rootPath}src/base2.js"></script>
