@@ -18,22 +18,30 @@
 
 		<xsl:choose>
 			<xsl:when test="contains($duration, 'D')">
-				
+				<xsl:call-template name="ui:label">
+					<xsl:with-param name="name">n-days-before</xsl:with-param>
+					<xsl:with-param name="param" select="substring-after(substring-before($duration, 'D'), 'P')" />
+				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="contains($duration, 'H')">
-				<xsl:value-of select="substring-after(substring-before($duration, 'H'), 'T')" />
-				<xsl:text>小时</xsl:text>
+				<xsl:call-template name="ui:label">
+					<xsl:with-param name="name">n-hours-before</xsl:with-param>
+					<xsl:with-param name="param" select="substring-after(substring-before($duration, 'H'), 'T')" />
+				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="contains($duration, 'M')">
-				<xsl:value-of select="substring-after(substring-before($duration, 'M'), 'T')" />
-				<xsl:text>分钟</xsl:text>
+				<xsl:call-template name="ui:label">
+					<xsl:with-param name="name">n-minutes-before</xsl:with-param>
+					<xsl:with-param name="param" select="substring-after(substring-before($duration, 'M'), 'T')" />
+				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="contains($duration, 'S')">
-				<xsl:value-of select="substring-after(substring-before($duration, 'S'), 'T')" />
-				<xsl:text>秒</xsl:text>
+				<xsl:call-template name="ui:label">
+					<xsl:with-param name="name">n-seconds-before</xsl:with-param>
+					<xsl:with-param name="param" select="substring-after(substring-before($duration, 'S'), 'T')" />
+				</xsl:call-template>
 			</xsl:when>
 		</xsl:choose>
-		<xsl:text>前</xsl:text>
 	</xsl:template>
 
 </xsl:stylesheet>

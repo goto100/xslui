@@ -100,11 +100,10 @@
 					<li class="item">
 						<a href="?{$param-name}={$start}{$param}">
 							<xsl:attribute name="title">
-								<xsl:apply-templates select="$lang[@id = 'page.nth']">
-									<xsl:with-param name="labels">
-										<lang:label name="index"><xsl:value-of select="$start" /></lang:label>
-									</xsl:with-param>
-								</xsl:apply-templates>
+								<xsl:call-template name="lang:label">
+									<xsl:with-param name="name">n-th-page</xsl:with-param>
+									<xsl:with-param name="param" select="$start" />
+								</xsl:call-template>
 							</xsl:attribute>
 							<xsl:value-of select="$start" />
 						</a>

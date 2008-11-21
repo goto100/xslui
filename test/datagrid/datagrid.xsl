@@ -26,8 +26,8 @@
 			<xsl:with-param name="selectable" select="true()" />
 			<xsl:with-param name="cols-node">
 				<ui:col name="title" />
-				<ui:col name="edit" class="operation" />
 				<ui:col name="date" />
+				<ui:col name="edit" class="operation" />
 				<ui:col name="delete" class="operation" />
 			</xsl:with-param>
 			<xsl:with-param name="operations-node">
@@ -53,6 +53,7 @@
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+
 	<xsl:template match="dc:date" mode="ui:datagrid-cell">
 		<ui:cell name="{local-name()}">
 			<xsl:attribute name="title">

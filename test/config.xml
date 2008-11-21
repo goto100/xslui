@@ -3,5 +3,6 @@
 	<debug>true</debug>
 	<rootPath>/xslui/</rootPath>
 	<stylePath>/xslui/style/</stylePath>
+	<languagePath>/xslui/src/i18n/</languagePath>
 	<language>zh-CN</language>
 </config>

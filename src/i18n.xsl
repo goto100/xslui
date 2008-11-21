@@ -6,15 +6,27 @@
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 >
 
+	<xsl:import href="exslt/str/replace.xsl" />
+
 	<xsl:param name="lang:labels-path">i18n/</xsl:param>
-	<xsl:param name="lang:lang-name">zh-CN</xsl:param>
+	<xsl:param name="lang:lang-name">en</xsl:param>
 
 	<xsl:template match="lang:label">
+		<xsl:param name="param" select="/.." />
 		<xsl:param name="labels" select="/.." />
 
-		<xsl:apply-templates>
-			<xsl:with-param name="labels" select="exslt:node-set($labels)" />
-		</xsl:apply-templates>
+		<xsl:variable name="_param" select="exslt:node-set($param)/*" />
+
+		<xsl:variable name="text">
+			<xsl:apply-templates>
+				<xsl:with-param name="labels" select="exslt:node-set($labels)" />
+			</xsl:apply-templates>
+		</xsl:variable>
+		<xsl:call-template name="str:replace">
+			<xsl:with-param name="string" select="$text" />
+			<xsl:with-param name="search" select="$_param/name" />
+			<xsl:with-param name="replace" select="$_param/value" />
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="lang:label[@ref]">
@@ -91,10 +103,12 @@
 			</xsl:apply-templates>
 		</xsl:param>
 		<xsl:param name="name" />
+		<xsl:param name="param" />
 
 		<xsl:choose>
 			<xsl:when test="$name">
 				<xsl:apply-templates select="($labels/lang:label[@id = $name])[last()]">
+					<xsl:with-param name="param" select="$param" />
 					<xsl:with-param name="labels" select="$labels" />
 				</xsl:apply-templates>
 			</xsl:when>
@@ -146,24 +160,6 @@
 				</xsl:call-template>
 			</xsl:when>
 		</xsl:choose>
-	</xsl:template>
-
-	<xsl:template name="label">
-		<xsl:param name="labels" select="/.." />
-		<xsl:param name="name" />
-		<xsl:call-template name="lang:label">
-			<xsl:with-param name="labels-path">i18n/</xsl:with-param>
-			<xsl:with-param name="lang-name">zh-CN</xsl:with-param>
-			<xsl:with-param name="name" select="$name" />
-		</xsl:call-template>
-	</xsl:template>
-
-	<xsl:template match="node() | @*" mode="lang:label">
-		<xsl:param name="labels" select="/.." />
-		<xsl:call-template name="lang:label">
-			<xsl:with-param name="labels-path">i18n/</xsl:with-param>
-			<xsl:with-param name="lang-name">zh-CN</xsl:with-param>
-		</xsl:call-template>
 	</xsl:template>
 
 </xsl:stylesheet>
