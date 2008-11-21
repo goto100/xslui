@@ -18,13 +18,16 @@
 
 	<xsl:output method="html" indent="yes" encoding="utf-8" />
 
+	<xsl:variable name="ui:config" select="document('config.xml')/*" />
+
 	<xsl:template match="/" mode="default">
-		<xsl:param name="config" select="document('config.xml')/*" />
+		<xsl:param name="config" select="$ui:config" />
 
 		<html>
 			<head>
 				<link type="text/css" rel="stylesheet" href="{$config/stylePath}default.css" />
-				<script type="text/javascript" src="{$config/rootPath}src/base2-dom-fp.js"></script>
+				<script type="text/javascript" src="{$config/rootPath}src/base2.js"></script>
+				<script type="text/javascript" src="{$config/rootPath}src/base2-dom.js"></script>
 				<script type="text/javascript" src="{$config/rootPath}src/xslui.js"></script>
 			</head>
 			<body class="default">
@@ -71,6 +74,24 @@
 	<xsl:template match="/*[xforms:model/xforms:instance/id]">
 		<xsl:apply-templates select="page" mode="bar" />
 		<xsl:apply-templates select="xforms:model/xforms:submission" />
+	</xsl:template>
+
+	<xsl:template name="ui:label">
+		<xsl:param name="name" />
+		<xsl:param name="param" />
+		<xsl:call-template name="lang:label">
+			<xsl:with-param name="labels-path" select="$ui:config/languagePath" />
+			<xsl:with-param name="lang-name" select="$ui:config/language" />
+			<xsl:with-param name="name" select="$name" />
+			<xsl:with-param name="param" select="$param" />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="node() | @*" mode="ui:label">
+		<xsl:call-template name="lang:label">
+			<xsl:with-param name="labels-path" select="$ui:config/languagePath" />
+			<xsl:with-param name="lang-name" select="$ui:config/language" />
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="page" mode="bar">

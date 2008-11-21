@@ -118,22 +118,25 @@
 	<label id="saturday">星期六</label>
 	<label id="morning">上午</label>
 	<label id="afternoon">下午</label>
-	<label id="$n.days.before">$n天前</label>
-	<label id="2.days.before">前天</label>
-	<label id="1.days.before" ref="yesterday" />
-	<label id="0.days.before" ref="today" />
+	<label id="hour">小时</label>
+	<label id="hours">小时</label>
+	<label id="n-hours-before">$n小时前</label>
+	<label id="minute">分钟</label>
+	<label id="minutes">分钟</label>
+	<label id="n-minutes-before">$n分钟前</label>
+	<label id="second">秒</label>
+	<label id="seconds">秒</label>
+	<label id="n-seconds-before">$n秒前</label>
+	<label id="day">日</label>
+	<label id="days">日</label>
+	<label id="n-days-before">$n天前</label>
+	<label id="2-days-before">前天</label>
+	<label id="1-days-before" ref="yesterday" />
+	<label id="0-days-before" ref="today" />
 	<label id="yesterday">昨天</label>
 	<label id="today">今天</label>
 	<label id="tomorrow">明天</label>
 	<label id="dayAfterTomorrow">后天</label>
-	<label id="second">秒</label>
-	<label id="seconds">秒</label>
-	<label id="minute">分钟</label>
-	<label id="minutes">分钟</label>
-	<label id="hour">分钟</label>
-	<label id="hours">分钟</label>
-	<label id="day">日</label>
-	<label id="days">日</label>
 	<label id="month">月</label>
 	<label id="months">月</label>
 	<label id="year">年</label>

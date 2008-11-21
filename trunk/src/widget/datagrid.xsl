@@ -34,7 +34,7 @@
 			</xsl:if>
 			<xsl:for-each select="$operations">
 				<button type="submit" name="__action" value="{@name}.do">
-					<xsl:call-template name="label">
+					<xsl:call-template name="ui:label">
 						<xsl:with-param name="name" select="@name" />
 					</xsl:call-template>
 				</button>
@@ -54,7 +54,11 @@
 							</th>
 						</xsl:if>
 						<xsl:for-each select="$cols">
-							<th><xsl:value-of select="@name" /></th>
+							<th>
+								<xsl:call-template name="ui:label">
+									<xsl:with-param name="name" select="@name" />
+								</xsl:call-template>
+							</th>
 						</xsl:for-each>
 					</tr>
 				</thead>

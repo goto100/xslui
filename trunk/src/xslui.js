@@ -1,4 +1,5 @@
 base2.DOM.bind(document);
+
 document.addEventListener("DOMContentLoaded", initListTable, false);
 document.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
 
