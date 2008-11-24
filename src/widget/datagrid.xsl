@@ -39,7 +39,7 @@
 					</xsl:call-template>
 				</button>
 			</xsl:for-each>
-			<table class="list">
+			<table>
 				<xsl:if test="$selectable">
 					<col class="selection" />
 				</xsl:if>
@@ -83,10 +83,17 @@
 							</xsl:if>
 							<xsl:variable name="row" select="." />
 							<xsl:for-each select="$cols">
-								<xsl:variable name="cell" select="($row/ui:cell | $row/ui:operation)[@name = current()/@name]" />
+								<xsl:variable name="cell" select="($row/ui:cell)[@name = current()/@name]" />
 								<td>
 									<xsl:copy-of select="$cell/@title" />
-									<xsl:value-of select="$cell" />
+									<xsl:choose>
+										<xsl:when test="$cell/@href">
+											<a href="{$cell/@href}"><xsl:value-of select="$cell" /></a>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="$cell" />
+										</xsl:otherwise>
+									</xsl:choose>
 								</td>
 							</xsl:for-each>
 						</tr>
@@ -109,6 +116,14 @@
 
 	<xsl:template match="node()" mode="ui:datagrid-cell">
 		<ui:cell name="{local-name()}"><xsl:value-of select="." /></ui:cell>
+	</xsl:template>
+
+	<xsl:template match="node()" mode="ui:datagrid-cell.edit">
+		<ui:cell name="edit" href="?">编辑</ui:cell>
+	</xsl:template>
+
+	<xsl:template match="node()" mode="ui:datagrid-cell.delete">
+		<ui:cell name="delete" href="?">删除</ui:cell>
 	</xsl:template>
 
 </xsl:stylesheet>
