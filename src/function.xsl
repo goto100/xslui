@@ -5,7 +5,7 @@
 	xmlns:str="http://exslt.org/strings"
 	xmlns:msxsl="urn:schemas-microsoft-com:xslt"
 >
-
+	
 	<msxsl:script implements-prefix="exslt" language="JScript">
 		this['node-set'] = function(x) {
 			return x;
