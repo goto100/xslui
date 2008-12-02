@@ -1,7 +1,11 @@
+base2.JavaScript.bind(window);
 base2.DOM.bind(document);
+base2.DOM.EventTarget(window);
 
 document.addEventListener("DOMContentLoaded", initListTable, false);
 document.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
+document.addEventListener("DOMContentLoaded", initWindow, false);
+
 
 function initListTable() {
 	document.querySelectorAll("form.datagrid table").forEach(function(table) {
@@ -40,6 +44,10 @@ function initMultipleSubmission() {
 	});
 }
 
+function initWindow() {
+	document.querySelectorAll("div.window").forEach(Window.bind);
+}
+
 var com = {xslui: {}};
 com.xslui.Tree = function(element, setting) {
 	if (!setting) setting = {};
@@ -61,4 +69,64 @@ function initTree() {
 	document.querySelectorAll("ul.tree").forEach(function(ul) {
 		new com.xslui.Tree(ul);
 	});
+}
+
+base2.DOM.HTMLElement.prototype.fix = function(dynamics) {
+	if (base2.detect("MSIE6")) this.style.position = "absolute";
+	else this.style.position = "fixed";
+	this.style.top = (document.documentElement.scrollTop + ((document.documentElement.clientHeight || document.body.clientHeight) - this.offsetHeight) / 2) + "px";
+	this.style.left = (document.documentElement.scrollLeft + (document.documentElement.clientWidth - this.offsetWidth) / 2) + "px";
+
+	if (dynamics) {
+		var node = this;
+		function fix() {node.fix();}
+		window.addEventListener("resize", fix, false);
+		if (base2.detect("MSIE6")) {
+			window.attachEvent("onresize", fix, false);
+			window.attachEvent("onscroll", fix, false);
+		}
+	}
+}
+
+function Window() {
+	this.modal = false;
+	this.closable = true;
+}
+
+Window.bind = function(node) {
+	node.style.display = "none";
+	base2.extend(node, new Window());
+	node.modal = node.hasClass("modal");
+	node.closable = node.hasClass("closable");
+}
+
+Window.prototype.show = function() {
+	this.style.display = "";
+	this.style.zIndex = 2;
+	this.fix(true);
+	if (this.modal) {
+		var overlay = document.createElement("div");
+		overlay.className = "overlay";
+		overlay.fix(true);
+		overlay.style.top = "0px";
+		overlay.style.left = "0px";
+		overlay.style.zIndex = this.style.zIndex - 1;;
+		overlay.style.width = "100%";
+		overlay.style.height = "100%";
+		this.parentNode.appendChild(overlay);
+	}
+	if (this.closable) {
+		var closeButton = document.createElement("button");
+		closeButton.className = "close";
+		closeButton.innerHTML = "close";
+		var win = this;
+		closeButton.addEventListener("click", function() {
+			win.style.display = "none";
+			base2.DOM.bind(win.parentNode);
+			win.parentNode.querySelectorAll("div.overlay").forEach(function(div) {
+				div.style.display = "none";
+			});
+		}, false);
+		this.querySelector("h1, h2, h3, h4, h5, h6").appendChild(closeButton);
+	}
 }
