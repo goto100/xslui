@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../src/base2-dom-fp.js"></script>
+<script type="text/javascript" src="../../src/xslui.js"></script>
+<script type="text/javascript" src="../../src/js/Componet.js"></script>
+<script type="text/javascript" src="../../src/js/Window.js"></script>
+<script type="text/javascript" src="../../src/xslui.js"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+	var warningWindow = document.getElementById("warning");
+	warningWindow.closable = true;
+	warningWindow.heading.innerHTML = "abc";
+	warningWindow.show();
+	warningWindow.okButton.onclick = function() {
+		alert("!");
+	}
+}, false);
+</script>
+<link type="text/css" rel="stylesheet" href="../../style/huan/reset.css" />
+<link type="text/css" rel="stylesheet" href="../../style/huan/base.css" />
+<style type="text/css">
+	div.overlay {
+		background-color: #999999;
+		opacity: 0.8;
+	}
+	div.window {
+		width: 300px;
+		height: 200px;
+		border: 1px solid #000000;
+		background-color: #FFFFFF;
+	}
+	div.window h1,
+	div.window h2,
+	div.window h3,
+	div.window h4,
+	div.window h5,
+	div.window h6 {
+		position: relative;
+		margin: 0;
+		border-bottom: 1px solid #000000;
+		font-family: Verdana, Geneva, sans-serif;
+	}
+	div.window h1 button.close,
+	div.window h2 button.close,
+	div.window h3 button.close,
+	div.window h4 button.close,
+	div.window h5 button.close,
+	div.window h6 button.close {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+	}
+	div.window div.panel {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+</style>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="warning" class="draggable modal window">
+	<h2>title</h2>
+	<p>content</p>
+	<div class="panel"></div>
+</div>
+
+</body>
+</html>
