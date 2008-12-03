@@ -11,8 +11,8 @@ Window.bind = function(node) {
 	base2.extend(node, new Window());
 	node.heading = node.querySelector("h1, h2, h3, h4, h5, h6");
 	node.buttonPanel = node.querySelector("div.panel");
-	node.modal = node.hasClass("modal");
-	node.closable = node.hasClass("closable");
+	node.modal = node.classList.has("modal");
+	node.closable = node.classList.has("closable");
 }
 
 Window.prototype.show = function() {
@@ -58,16 +58,29 @@ Window.prototype.show = function() {
 		this.buttonPanel.appendChild(this.cancelButton);
 	}
 	if (this.draggable) {
-		this.heading.addEventListener("mousedown", function(event) {
-			this.addEventListener("mousemove", function(event) {dragging.call(win, event);}, false);
-			this.addEventListener("mouseup", function() {
-				this.removeEventListener("mousemove", dragging, false);
-				this.removeEventListener("mouseup", dragging, false);
-			}, false);
-		}, false);
+		Drag(this, this.heading);
 	}
 }
 
-function dragging(event) {
-	this.style.top = event.clientY - (event.clientY - this.offsetTop) + "px";
+function Drag(thing, handle, range, target) {
+	if (!handle) handle = thing;
+	if (!range) range = document;
+
+	var diffX = 0;
+	var diffY = 0;
+
+	function drag(event) {
+		thing.style.top = event.clientY - diffY + "px";
+		thing.style.left = event.clientX - diffX + "px";
+	}
+
+	handle.addEventListener("mousedown", function(event) {
+		diffX = event.clientX - thing.offsetLeft;
+		diffY = event.clientY - thing.offsetTop;
+		range.addEventListener("mousemove", drag, false);
+		range.addEventListener("mouseup", function() {
+			range.removeEventListener("mousemove", drag, false);
+			range.removeEventListener("mouseup", drag, false);
+		}, false);
+	}, false);
 }
