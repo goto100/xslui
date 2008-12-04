@@ -25,7 +25,7 @@
 
 		<html>
 			<head>
-				<link type="text/css" rel="stylesheet" href="{$config/stylePath}default--.css" />
+				<link type="text/css" rel="stylesheet" href="{$config/stylePath}default.css" />
 				<script type="text/javascript" src="{$config/rootPath}src/base2.js"></script>
 				<script type="text/javascript" src="{$config/rootPath}src/base2-dom.js"></script>
 				<script type="text/javascript" src="{$config/rootPath}src/xslui.js"></script>

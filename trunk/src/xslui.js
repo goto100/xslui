@@ -2,35 +2,9 @@ eval(base2.namespace);
 base2.DOM.bind(document);
 base2.DOM.EventTarget(window);
 
-document.addEventListener("DOMContentLoaded", initListTable, false);
-document.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
-document.addEventListener("DOMContentLoaded", initWindow, false);
+window.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
+window.addEventListener("DOMContentLoaded", initUI, false);
 
-
-function initListTable() {
-	document.querySelectorAll("form.datagrid table").forEach(function(table) {
-		table.querySelectorAll("tbody td.delete a").forEach(function(auchor) { // Delete link
-			auchor.onclick = function() {
-				return confirm("Delete?");
-			}
-		});
-		table.querySelectorAll("tbody th.selection input").forEach(function(input) { // Select row
-			input.onclick = function() {
-				with (this.parentNode.parentNode) className = this.checked? "selected " + className : className.replace(/selected\s*/ig, "");
-			}
-			input.onclick();
-		});
-		table.querySelector("thead th.selection input").onclick = function() { // Select All
-			var checked = this.checked;
-			table.querySelectorAll("tbody th.selection input").forEach(function(input) {
-				if (!input.disabled) {
-					input.checked = checked;
-					input.onclick();
-				}
-			});
-		}
-	});
-}
 
 function initMultipleSubmission() {
 	document.querySelectorAll("form button[type=submit]").forEach(function(button) {
@@ -44,44 +18,11 @@ function initMultipleSubmission() {
 	});
 }
 
-function initWindow() {
+function initUI() {
+	document.querySelectorAll("form.datagrid").forEach(Datagrid.bind);
 	document.querySelectorAll("div.window").forEach(Window.bind);
+	document.querySelectorAll("ul.tree").forEach(Tree.bind);
 }
-
-var com = {xslui: {}};
-com.xslui.Tree = function(element, setting) {
-	if (!setting) setting = {};
-	if (!setting.classes) setting.classes = {};
-	if (!setting.classes.branch) setting.classes.branch = "branch";
-	if (!setting.classes.switcher) setting.classes.switcher = "switcher";
-	var swither = document.createElement("p");
-		switcher.className = "switch";
-		switcher.appendChild(document.createTextNode(""));
-		switcher.onclick = function() {
-			ul.childNodes.forEach(function(child) {child.style.display = "none"});
-		}
-		ul.querySelectorAll("li").forEach(function(li) {
-			li.insertBefore(switcher, li.getElementByTagName("h3")[0]);
-		});
-}
-
-function initTree() {
-	document.querySelectorAll("ul.tree").forEach(function(ul) {
-		new com.xslui.Tree(ul);
-	});
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -91,14 +32,14 @@ function initTree() {
 
 
 // =========================================================================
-// ui/Componet.js
+// ui/Button.js
 // =========================================================================
 
-function Component() {
+function Button() {
 }
-Component.CLOSE = 1;
-Component.OK = 1 << 1;
-Component.CANCEL = 1 << 2;
+Button.CLOSE = 1;
+Button.OK = 1 << 1;
+Button.CANCEL = 1 << 2;
 
 
 
@@ -166,12 +107,35 @@ Fixable.bind = function(node) {
 
 
 // =========================================================================
+// ui/Tree.js
+// =========================================================================
+
+function Tree() {
+}
+Tree.bind = function(element, setting) {
+	if (!setting) setting = {};
+	if (!setting.classes) setting.classes = {};
+	if (!setting.classes.branch) setting.classes.branch = "branch";
+	if (!setting.classes.switcher) setting.classes.switcher = "switcher";
+	var swither = document.createElement("p");
+	switcher.className = "switch";
+	switcher.appendChild(document.createTextNode(""));
+	switcher.onclick = function() {
+		ul.childNodes.forEach(function(child) {child.style.display = "none"});
+	}
+	ul.querySelectorAll("li").forEach(function(li) {
+		li.insertBefore(switcher, li.getElementByTagName("h3")[0]);
+	});
+}
+
+
+// =========================================================================
 // ui/Window.js
 // =========================================================================
 
 function Window() {
 	this.title;
-	this.components = Component.CLOSE | Component.OK | Component.CANCEL;
+	this.components = Button.CLOSE | Button.OK | Button.CANCEL;
 	this.modal = false;
 	this.closable = true;
 	this.draggable = true;
@@ -203,7 +167,7 @@ Window.prototype.open = function() {
 		overlay.style.height = "100%";
 		this.parentNode.appendChild(overlay);
 	}
-	if (this.components & Component.CLOSE == Component.CLOSE) {
+	if (this.components & Button.CLOSE == Button.CLOSE) {
 		var button = document.createElement("button");
 		button.className = "close";
 		button.innerHTML = "close";
@@ -211,13 +175,13 @@ Window.prototype.open = function() {
 		button.addEventListener("click", function() { win.close(); }, false);
 		this.querySelector("h1, h2, h3, h4, h5, h6").appendChild(button);
 	}
-	if (this.components & Component.OK == Component.OK) {
+	if (this.components & Button.OK == Button.OK) {
 		this.okButton = document.createElement("button");
 		this.okButton.className = "ok";
 		this.okButton.innerHTML = "ok";
 		this.buttonPanel.appendChild(this.okButton);
 	}
-	if (this.components & Component.CANCEL == Component.CANCEL) {
+	if (this.components & Button.CANCEL == Button.CANCEL) {
 		this.cancelButton = document.createElement("button");
 		this.cancelButton.className = "cancel";
 		this.cancelButton.innerHTML = "cancel";
@@ -236,3 +200,34 @@ Window.prototype.close = function() {
 	});
 }
 
+// =========================================================================
+// ui/Datagrid.js
+// =========================================================================
+
+function Datagrid() {
+}
+Datagrid.bind = function(node) {
+	base2.lang.extend(node, new Datagrid());
+
+	node.querySelectorAll("table tbody td.delete a").forEach(function(auchor) { // Delete link
+		auchor.onclick = function() {
+			return confirm("Delete?");
+		}
+	});
+	node.querySelectorAll("table tbody th.selection input").forEach(function(input) { // Select row
+		input.onclick = function() {
+			var row = DOM.bind(this.parentNode.parentNode);
+			this.checked? row.classList.add("selected") : row.classList.remove("selected");
+		}
+		input.onclick();
+	});
+	node.querySelector("table thead th.selection input").onclick = function() { // Select All
+		var checked = this.checked;
+		node.querySelectorAll("table tbody th.selection input").forEach(function(input) {
+			if (!input.disabled) {
+				input.checked = checked;
+				input.onclick();
+			}
+		});
+	}
+}
