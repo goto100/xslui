@@ -5,17 +5,14 @@
 <script type="text/javascript" src="../../src/base2.js"></script>
 <script type="text/javascript" src="../../src/base2-dom.js"></script>
 <script type="text/javascript" src="../../src/xslui.js"></script>
-<script type="text/javascript" src="../../src/js/Componet.js"></script>
-<script type="text/javascript" src="../../src/js/Window.js"></script>
-<script type="text/javascript" src="../../src/xslui.js"></script>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
 	var warningWindow = document.getElementById("warning");
 	warningWindow.closable = true;
 	warningWindow.heading.innerHTML = "abc";
-	warningWindow.show();
+	warningWindow.open();
 	warningWindow.okButton.onclick = function() {
-		alert("!");
+		warningWindow.close();
 	}
 }, false);
 </script>
