@@ -1,9 +1,9 @@
 eval(base2.namespace);
-base2.DOM.bind(document);
-base2.DOM.EventTarget(window);
+DOM.bind(document);
+DOM.EventTarget(window);
 
-window.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
-window.addEventListener("DOMContentLoaded", initUI, false);
+document.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
+document.addEventListener("DOMContentLoaded", initUI, false);
 
 
 function initMultipleSubmission() {
