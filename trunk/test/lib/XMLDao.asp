@@ -18,6 +18,8 @@ XMLDao.prototype.load = function() {
 	this.nextId++;
 
 	this.emptyPojoDom = this.dom.createElement("rdf:Description");
+	this.emptyPojoDom.setAttribute("xmlns:rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+	this.emptyPojoDom.setAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
 	var title = this.dom.createElement("dc:title");
 	var date = this.dom.createElement("dc:date");
 	var summary = this.dom.createElement("dc:summary");

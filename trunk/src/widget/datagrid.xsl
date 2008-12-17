@@ -24,18 +24,18 @@
 		<xsl:param name="operations-node" select="/.." />
 		<xsl:param name="rows-node" select="/.." />
 
-		<xsl:variable name="cols" select="exslt:node-set($cols-node)/ui:col" />
-		<xsl:variable name="operations" select="exslt:node-set($operations-node)/ui:operation" />
-		<xsl:variable name="rows" select="exslt:node-set($rows-node)/tr" />
+		<xsl:variable name="cols" select="exslt:node-set($cols-node)/*" />
+		<xsl:variable name="operations" select="exslt:node-set($operations-node)/*" />
+		<xsl:variable name="rows" select="exslt:node-set($rows-node)/*" />
 
 		<form class="datagrid" action="">
 			<xsl:if test="$segment-total">
 				<xsl:call-template name="ui:pagebar" />
 			</xsl:if>
 			<xsl:for-each select="$operations">
-				<button type="submit" name="__action" value="{@name}.do">
+				<button type="submit" name="__action" value="{@ui:name}">
 					<xsl:call-template name="ui:label">
-						<xsl:with-param name="name" select="@name" />
+						<xsl:with-param name="name" select="@ui:name" />
 					</xsl:call-template>
 				</button>
 			</xsl:for-each>
@@ -44,7 +44,7 @@
 					<col class="selection" />
 				</xsl:if>
 				<xsl:for-each select="$cols">
-					<col class="{@name} {@class}" />
+					<col class="{@ui:name} {@class}" />
 				</xsl:for-each>
 				<thead>
 					<tr>
@@ -56,7 +56,7 @@
 						<xsl:for-each select="$cols">
 							<th>
 								<xsl:call-template name="ui:label">
-									<xsl:with-param name="name" select="@name" />
+									<xsl:with-param name="name" select="@ui:name" />
 								</xsl:call-template>
 							</th>
 						</xsl:for-each>
@@ -83,7 +83,7 @@
 							</xsl:if>
 							<xsl:variable name="row" select="." />
 							<xsl:for-each select="$cols">
-								<xsl:variable name="cell" select="($row/td)[@ui:name = current()/@name]" />
+								<xsl:variable name="cell" select="$row/*[@ui:name = current()/@ui:name]" />
 								<td>
 									<xsl:copy-of select="$cell/@title" />
 									<xsl:choose>
