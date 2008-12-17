@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rdf:RDF
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
->
-
-	<rdf:Description about="http://sports.163.com/08/1216/11/4T9GAN6000051CA1.html">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<rdf:Description id="1" about="http://sports.163.com/08/1216/11/4T9GAN6000051CA1.html">
 		<dc:title>穆托姆博：圣诞节之后肯定复出</dc:title>
 		<dc:summary>穆托姆博今日接受了NBA官方专访，他证实了“圣诞节后复出”的传言，但不一定是火箭或什么球队，而大叔目前更关心的是自己在非洲的慈善事业……</dc:summary>
+		<dc:date>1999-03-12T23:23:23Z</dc:date>
 		<dc:description xmlns="http://www.w3.org/1999/xhtml">
 			<p>网易体育12月16日报道：</p>
 			<p>近期有关42岁老中锋迪肯贝·穆托姆博要复出参赛的传闻一直不断，火箭、掘金、凯尔特人成了穆大叔的三大争夺者。就此，穆托姆博今日接受了《NBA官方网站》专栏作家约翰·哈里斯的专访，他证实了自己“圣诞节后将复出参赛”的传言，但具体球队不能确定。此外，大叔目前更关心非洲的慈善事业。</p>
@@ -17,10 +14,10 @@
 			<p>至于自己复出后，会不会邀请Bono去观看NBA比赛，大叔表示一定要。“Bono去年曾经邀请我看过他们的几场音乐会，但我还没有机会邀请他观看NBA，我欠他个人情，希望有机会补上。”穆托姆博最后说。</p>
 		</dc:description>
 	</rdf:Description>
-
-	<rdf:Description about="http://sports.163.com/08/1216/11/4T9GAN6000051CA1.html">
+	<rdf:Description id="2" about="http://sports.163.com/08/1216/11/4T9GAN6000051CA1.html">
 		<dc:title>麦蒂周三恐将改打一号位 球迷建议其顶替街球王</dc:title>
 		<dc:summary>阿尔斯通也倒下了，他可能会休战2个星期，于是休斯敦球迷给街球王找好了接班人，建议麦蒂改打1号位，这样阿泰和巴蒂尔就可以同时首发……</dc:summary>
+		<dc:date>2008-12-17T01:23:23Z</dc:date>
 		<dc:description xmlns="http://www.w3.org/1999/xhtml">
 			<p>网易体育12月16日报道：</p>
 			<p>火箭队08-09赛季开赛以来伤病不断，14人大名单中有8人先后受到伤病侵袭，今日第9人也产生了。“街球王”阿尔斯通因伤恐休战2个星期，这对原本就实力薄弱的火箭1号位来说无疑是晴天霹雳。休斯敦《韧性之城论坛》今日对此话题进行了讨论，球迷们纷纷建议1号球星麦格雷迪在12月17日（打掘金）的比赛中改打1号位，阿泰打2号位，这样可以将阿尔斯通缺阵带来的损失减少到最小。</p>
@@ -31,5 +28,4 @@
 			<p>好消息是，“野兽”阿泰斯特恢复神速，原本预计要休息7、8天的他只经过了四天调养，目前右脚踝肿胀和疼痛已经明显减轻，有望在周三重新登场。“如果罗恩回归，我会看看情况（安排首发）。”阿德尔曼今日说。而休斯敦球迷则建议阿泰改打2号位，这样巴蒂尔就可以继续担任主力小前锋，并预测周三的先发阵容是：麦蒂、阿泰、巴蒂尔、斯科拉、姚明。</p>
 		</dc:description>
 	</rdf:Description>
-
 </rdf:RDF>

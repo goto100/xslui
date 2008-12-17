@@ -26,7 +26,7 @@
 
 		<xsl:variable name="cols" select="exslt:node-set($cols-node)/ui:col" />
 		<xsl:variable name="operations" select="exslt:node-set($operations-node)/ui:operation" />
-		<xsl:variable name="rows" select="exslt:node-set($rows-node)/ui:row" />
+		<xsl:variable name="rows" select="exslt:node-set($rows-node)/tr" />
 
 		<form class="datagrid" action="">
 			<xsl:if test="$segment-total">
@@ -75,7 +75,7 @@
 							<xsl:if test="$selectable">
 								<th class="selection">
 									<input type="checkbox" name="id" value="{@id}">
-										<xsl:if test="@selectable = 'false'">
+										<xsl:if test="@ui:selectable = 'false'">
 											<xsl:attribute name="disabled">disabled</xsl:attribute>
 										</xsl:if>
 									</input>
@@ -83,12 +83,12 @@
 							</xsl:if>
 							<xsl:variable name="row" select="." />
 							<xsl:for-each select="$cols">
-								<xsl:variable name="cell" select="($row/ui:cell)[@name = current()/@name]" />
+								<xsl:variable name="cell" select="($row/td)[@ui:name = current()/@name]" />
 								<td>
 									<xsl:copy-of select="$cell/@title" />
 									<xsl:choose>
-										<xsl:when test="$cell/@href">
-											<a href="{$cell/@href}"><xsl:value-of select="$cell" /></a>
+										<xsl:when test="$cell/@ui:href">
+											<a href="{$cell/@ui:href}"><xsl:value-of select="$cell" /></a>
 										</xsl:when>
 										<xsl:otherwise>
 											<xsl:value-of select="$cell" />
@@ -108,22 +108,22 @@
 		<xsl:param name="operations-node" select="/.." />
 		<xsl:param name="cells-node" select="/.." />
 
-		<ui:row selectable="{$selectable}">
+		<tr ui:selectable="{$selectable}">
 			<xsl:copy-of select="$operations-node" />
 			<xsl:copy-of select="$cells-node" />
-		</ui:row>
+		</tr>
 	</xsl:template>
 
 	<xsl:template match="node()" mode="ui:datagrid-cell">
-		<ui:cell name="{local-name()}"><xsl:value-of select="." /></ui:cell>
+		<td ui:name="{local-name()}"><xsl:value-of select="." /></td>
 	</xsl:template>
 
 	<xsl:template match="node()" mode="ui:datagrid-cell.edit">
-		<ui:cell name="edit" href="?">编辑</ui:cell>
+		<td ui:name="edit" ui:href="?">编辑</td>
 	</xsl:template>
 
 	<xsl:template match="node()" mode="ui:datagrid-cell.delete">
-		<ui:cell name="delete" href="?">删除</ui:cell>
+		<td ui:name="delete" ui:href="?">删除</td>
 	</xsl:template>
 
 </xsl:stylesheet>

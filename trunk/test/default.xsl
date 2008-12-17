@@ -13,8 +13,8 @@
 	xmlns:ui="http://imyui.cn/xslui"
 >
 
-	<xsl:include href="../src/function.xsl" />
-	<xsl:include href="../src/i18n.xsl" />
+	<xsl:import href="../src/function.xsl" />
+	<xsl:import href="../src/i18n.xsl" />
 
 	<xsl:output method="html" indent="yes" encoding="utf-8" />
 
@@ -44,36 +44,14 @@
 		</html>
 	</xsl:template>
 
-	<xsl:template match="xforms:model">
-		<xsl:apply-templates select="xforms:submission" />
-	</xsl:template>
-
-	<xsl:template match="/xforms:model/xforms:instance">
-		<xsl:apply-templates />
-
-		<xsl:call-template name="xforms:submit" />
-	</xsl:template>
-
-	<xsl:template match="/*/xforms:model/xforms:instance">
-		<xsl:if test="*/search:search">
-			<input type="hidden" name="search" value="true" />
-		</xsl:if>
-		<xsl:apply-templates select="*/search:key" mode="xforms:input" />
-		<xsl:apply-templates />
-		<xsl:call-template name="xforms:submit">
-			<xsl:with-param name="label.name">search</xsl:with-param>
-		</xsl:call-template>
-	</xsl:template>
-
 	<xsl:template match="/rdf:RDF">
 		<xsl:apply-templates select="xforms:model/xforms:submission" />
 		<xsl:apply-templates select="page" mode="bar" />
 		<xsl:call-template name="ui:datagrid" />
 	</xsl:template>
 
-	<xsl:template match="/*[xforms:model/xforms:instance/id]">
-		<xsl:apply-templates select="page" mode="bar" />
-		<xsl:apply-templates select="xforms:model/xforms:submission" />
+	<xsl:template match="xforms:model">
+		<xsl:apply-templates select="xforms:submission" />
 	</xsl:template>
 
 	<xsl:template name="ui:label">

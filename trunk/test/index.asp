@@ -1,79 +1,59 @@
 <%@LANGUAGE="JAVASCRIPT" CODEPAGE="65001"%>
+<!--#include file="lib/XMLDocument.asp" -->
+<!--#include file="lib/XMLDao.asp" -->
+<!--#include file="lib/HttpRequest.asp" -->
+<!--#include file="lib/mvc.asp" -->
 <script language="javascript" runat="server">
-function XMLDao() {
-	this.dom;
-	this.path;
-	this.loaded = false;
-}
 
-XMLDao.prototype.load = function() {
-	try {
-		this.dom = new ActiveXObject("MSXML2.DomDocument");
-	} catch(e) {
-		try {
-			this.dom = new ActiveXObject("MSXML.DomDocument");
-		} catch(e) {
-			try {
-				this.dom = new ActiveXObject("Microsoft.XMLDom");
-			} catch(e) {
-				throw new Error(0, "Can't create XML Dom, you need Microsoft.XMLDom object.");
-			}
-		}
-	}
-	this.dom.load(this.path);
-	if (this.dom.parseError.errorCode) {
-		write(this.dom.parseError.reason)
-	}
-}
-
-XMLDao.prototype.list = function() {
-	if (!this.loaded) this.load();
-
-	var recs = this.dom.documentElement.selectNodes("/rdf:RDF/rdf:Description");
-	var pojos = [];
-	for (var i = 0; i < recs.length; i++) {
-		var pojo = {
-			title: recs[i].selectSingleNode("dc:title").text,
-			summary: recs[i].selectSingleNode("dc:summary").text,
-			description: recs[i].selectSingleNode("dc:description").xml
-		}
-		pojos.push(pojo);
-	}
-	return pojos;
-}
-
-XMLDao.prototype.save = function(article) {
-	if (!this.loaded) this.load();
-
-	var articleDom = this.dom.documentElement.selectSingleNode("/rdf:RDF/rdf:Description").cloneNode();
-	articleDom.selectSingleNode("dc:title/text()").nodeValue = "abc";
-	articleDom.selectSingleNode("dc:summary/text()").nodeValue = "abc";
-	articleDom.selectSingleNode("dc:description/text()").nodeValue = "abc";
-	this.dom.documentElement.appendChild();
-}
-
-
-
-
-
-
-function write(str) {
-	Response.Write(str);
-}
-
-function writeln(str) {
-	Response.Write(str + "<br />");
-}
-
+var request = new HttpRequest();
 var dao = new XMLDao();
 dao.path = Server.MapPath("/xslui/test/data.xml");
 dao.load();
+var page = new XMLDocument();
+var pi = page.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"utf-8\"");
+page.insertBefore(pi, page.childNodes.item(0));
 
-var articles = dao.list();
 
-for (var i = 0; i < articles.length; i++) {
-	writeln(articles[i].title);
-	writeln(articles[i].summary);
+
+if (request.search.path && request.search.path[1] == "edit") {
+	var article = dao.get(parseInt(request.search.path[0]), true);
+
+	page.documentElement = page.createElement("xforms:model");
+	page.documentElement.setAttribute("xmlns:xforms", "http://www.w3.org/2002/xforms");
+	var instance = page.createElement("xforms:instance");
+	instance.appendChild(article);
+	var submission = page.createElement("xforms:submission");
+	submission.setAttribute("action", "?" + article.getAttribute("id"));
+	submission.setAttribute("method", "post");
+	page.documentElement.appendChild(instance);
+	page.documentElement.appendChild(submission);
+
+	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"edit.xsl\"");
+	page.insertBefore(pi, page.childNodes.item(1));	
+	Response.ContentType = "text/xml";
+	write(page.xml)
+} else {
+	var article = {
+		title: "abc",
+		summary: "abc"
+	}
+	dao.save(article);
+	dao.update(3, article)
+	dao.remove(3)
+	
+	var articles = dao.list(0, 0, true);
+
+	page.documentElement = page.createElement("rdf:RDF");
+	page.documentElement.setAttribute("xmlns:rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+	page.documentElement.setAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
+	for (var i = 0; i < articles.length; i++) {
+		page.documentElement.appendChild(articles[i]);
+	}
+
+	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"index.xsl\"");
+	page.insertBefore(pi, page.childNodes.item(1));
+	
+	Response.ContentType = "text/xml";
+	write(page.xml)
 }
-
 </script>

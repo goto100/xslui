@@ -1,36 +1,6 @@
 eval(base2.namespace);
-base2.DOM.bind(document);
-base2.DOM.EventTarget(window);
 DOM.bind(document);
 DOM.EventTarget(window);
-
-document.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
-document.addEventListener("DOMContentLoaded", initUI, false);
-
-
-function initMultipleSubmission() {
-	document.querySelectorAll("form button[type=submit]").forEach(function(button) {
-		button.onclick = function() {
-			button.value = button.getAttribute("value");
-			if (this.name = "__action") {
-				this.removeAttribute("name");
-				this.form.action = this.value;
-			}
-		}
-	});
-}
-
-function initUI() {
-	document.querySelectorAll("form.datagrid").forEach(Datagrid.bind);
-	document.querySelectorAll("div.window").forEach(Window.bind);
-	document.querySelectorAll("ul.tree").forEach(Tree.bind);
-}
-
-
-
-
-
-
 
 
 // =========================================================================
@@ -207,23 +177,27 @@ Window.prototype.close = function() {
 // =========================================================================
 
 function Datagrid() {
+	this.selections; // All checkbox each row with this.selections.all
 }
 Datagrid.bind = function(node) {
 	base2.lang.extend(node, new Datagrid());
+
+	this.selections = node.querySelectorAll("table tbody th.selection input");
+	this.selections.all = node.querySelector("table thead th.selection input");
 
 	node.querySelectorAll("table tbody td.delete a").forEach(function(auchor) { // Delete link
 		auchor.onclick = function() {
 			return confirm("Delete?");
 		}
 	});
-	node.querySelectorAll("table tbody th.selection input").forEach(function(input) { // Select row
+	this.selections.forEach(function(input) { // Select row
 		input.onclick = function() {
 			var row = DOM.bind(this.parentNode.parentNode);
 			this.checked? row.classList.add("selected") : row.classList.remove("selected");
 		}
 		input.onclick();
 	});
-	node.querySelector("table thead th.selection input").onclick = function() { // Select All
+	this.selections.all.onclick = function() { // Select All
 		var checked = this.checked;
 		node.querySelectorAll("table tbody th.selection input").forEach(function(input) {
 			if (!input.disabled) {
@@ -232,4 +206,35 @@ Datagrid.bind = function(node) {
 			}
 		});
 	}
+}
+
+
+
+
+
+
+
+
+var host = document.body? window : document;
+host.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
+host.addEventListener("DOMContentLoaded", initUI, false);
+
+
+
+function initMultipleSubmission() {
+	document.querySelectorAll("form button[type=submit]").forEach(function(button) {
+		button.onclick = function() {
+			button.value = button.getAttribute("value");
+			if (this.name = "__action") {
+				this.removeAttribute("name");
+				this.form.action = this.value;
+			}
+		}
+	});
+}
+
+function initUI() {
+	document.querySelectorAll("form.datagrid").forEach(Datagrid.bind);
+	document.querySelectorAll("div.window").forEach(Window.bind);
+	document.querySelectorAll("ul.tree").forEach(Tree.bind);
 }

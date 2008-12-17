@@ -16,30 +16,30 @@
 
 	<xsl:import href="../xforms2html.xsl" />
 
-	<xsl:template match="node() | @*" mode="xforms:input">
-		<xsl:call-template name="xforms:input" />
+	<xsl:template match="node() | @*" mode="ui:input">
+		<xsl:call-template name="ui:input" />
 	</xsl:template>
 
-	<xsl:template match="node() | @*" mode="xforms:secret">
-		<xsl:call-template name="xforms:secret" />
+	<xsl:template match="node() | @*" mode="ui:secret">
+		<xsl:call-template name="ui:secret" />
 	</xsl:template>
 
-	<xsl:template match="node() | @*" mode="xforms:textarea">
-		<xsl:call-template name="xforms:textarea" />
+	<xsl:template match="node() | @*" mode="ui:textarea">
+		<xsl:call-template name="ui:textarea" />
 	</xsl:template>
 
-	<xsl:template match="node() | @*" mode="xforms:upload">
-		<xsl:call-template name="xforms:upload" />
+	<xsl:template match="node() | @*" mode="ui:upload">
+		<xsl:call-template name="ui:upload" />
 	</xsl:template>
 
-	<xsl:template match="node() | @*" mode="xforms:select">
+	<xsl:template match="node() | @*" mode="ui:select">
 		<xsl:param name="attribute" />
 		<xsl:param name="items.boolean" />
 		<xsl:param name="items.node" />
 		<xsl:param name="items.text" />
 		<xsl:param name="items.form" />
 		<xsl:param name="items" />
-		<xsl:call-template name="xforms:select">
+		<xsl:call-template name="ui:select">
 			<xsl:with-param name="ref" select="." />
 			<xsl:with-param name="attribute" select="$attribute" />
 			<xsl:with-param name="items.boolean" select="$items.boolean" />
@@ -49,31 +49,31 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="node() | @*" mode="xforms:select1">
-		<xsl:call-template name="xforms:select1">
+	<xsl:template match="node() | @*" mode="ui:select1">
+		<xsl:call-template name="ui:select1">
 			<xsl:with-param name="ref" select="." />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="node() | @*" mode="xforms:item">
-		<xsl:call-template name="xforms:item">
+	<xsl:template match="node() | @*" mode="ui:item">
+		<xsl:call-template name="ui:item">
 			<xsl:with-param name="label.content" select="." />
 			<xsl:with-param name="value.content" select="." />
 		</xsl:call-template>	
 	</xsl:template>
 
-	<xsl:template name="xforms:submit">
+	<xsl:template name="ui:submit">
 		<xsl:param name="label.name">submit</xsl:param>
 		<xsl:variable name="config">
 			<submit>
-				<label><xsl:value-of select="$lang[@id = $label.name]" /></label>
+				<label>submit</label>
 			</submit>
 		</xsl:variable>
 
 		<xsl:apply-templates select="exslt:node-set($config)/xforms:submit" />
 	</xsl:template>
 
-	<xsl:template name="xforms:label">
+	<xsl:template name="ui:label">
 		<xsl:param name="name" />
 		<xsl:param name="attribute" />
 		<xsl:param name="ref" select="." />
@@ -89,7 +89,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template name="xforms:hint">
+	<xsl:template name="ui:hint">
 		<xsl:param name="attribute" />
 		<xsl:variable name="value">
 			<xsl:apply-templates select="." mode="lang:hint">
@@ -102,7 +102,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template name="xforms:alert">
+	<xsl:template name="ui:alert">
 		<xsl:param name="attribute" />
 		<xsl:variable name="id">
 			<xsl:apply-templates select="." mode="xforms:id">
@@ -116,7 +116,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template name="xforms:item">
+	<xsl:template name="ui:item">
 		<xsl:param name="label.content" />
 		<xsl:param name="value.content" />
 		<xsl:param name="hint.content" />
@@ -133,11 +133,11 @@
 		</item>
 	</xsl:template>
 
-	<xsl:template match="*" mode="xforms:item.tree">
+	<xsl:template match="*" mode="ui:item.tree">
 		<xsl:param name="tree" select="/.." />
 		<xsl:param name="child-prefix" />
 		<xsl:variable name="_item">
-			<xsl:apply-templates select="." mode="xforms:item" />
+			<xsl:apply-templates select="." mode="ui:item" />
 		</xsl:variable>
 		<xsl:variable name="item" select="exslt:node-set($_item)/xforms:item" />
 
@@ -157,7 +157,7 @@
 			<xsl:copy-of select="$item/xforms:hint" />
 		</item>
 
-		<xsl:apply-templates select="*[count(.|$tree) = count($tree)]" mode="xforms:item.tree">
+		<xsl:apply-templates select="*[count(.|$tree) = count($tree)]" mode="ui:item.tree">
 			<xsl:with-param name="tree" select="$tree" />
 			<xsl:with-param name="child-prefix">
 				<xsl:value-of select="$child-prefix" />
@@ -171,13 +171,13 @@
 
 	</xsl:template>
 
-	<xsl:template name="xforms:choices">
+	<xsl:template name="ui:choices">
 		<xsl:param name="label.content" />
 		<xsl:param name="items.node" />
 		<xsl:param name="items">
 			<xsl:choose>
 				<xsl:when test="$items.node">
-					<xsl:apply-templates select="$items.node" mode="xforms:item">
+					<xsl:apply-templates select="$items.node" mode="ui:item">
 						<xsl:with-param name="caller" select="." />
 					</xsl:apply-templates>
 				</xsl:when>
@@ -192,24 +192,24 @@
 		</choices>
 	</xsl:template>
 
-	<xsl:template name="xforms:input">
+	<xsl:template name="ui:input">
 		<xsl:param name="attribute" />
 		<xsl:param name="spinner" />
 		<xsl:param name="bind" select="/.." />
 		<xsl:param name="label.name" />
 		<xsl:param name="label">
-			<xsl:call-template name="xforms:label">
+			<xsl:call-template name="ui:label">
 				<xsl:with-param name="attribute" select="$attribute" />
 				<xsl:with-param name="name" select="$label.name" />
 			</xsl:call-template>
 		</xsl:param>
 		<xsl:param name="hint">
-			<xsl:call-template name="xforms:hint">
+			<xsl:call-template name="ui:hint">
 				<xsl:with-param name="attribute" select="$attribute" />
 			</xsl:call-template>
 		</xsl:param>
 		<xsl:param name="alert">
-			<xsl:call-template name="xforms:alert">
+			<xsl:call-template name="ui:alert">
 				<xsl:with-param name="attribute" select="$attribute" />
 			</xsl:call-template>
 		</xsl:param>
@@ -233,25 +233,25 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
-	<xsl:template name="xforms:range">
+	<xsl:template name="ui:range">
 		<xsl:param name="attribute" />
 		<xsl:param name="start" />
 		<xsl:param name="end" />
 		<xsl:param name="step" select="1" />
 		<xsl:param name="label.name" />
 		<xsl:param name="label">
-			<xsl:call-template name="xforms:label">
+			<xsl:call-template name="ui:label">
 				<xsl:with-param name="attribute" select="$attribute" />
 				<xsl:with-param name="name" select="$label.name" />
 			</xsl:call-template>
 		</xsl:param>
 		<xsl:param name="hint">
-			<xsl:call-template name="xforms:hint">
+			<xsl:call-template name="ui:hint">
 				<xsl:with-param name="attribute" select="$attribute" />
 			</xsl:call-template>
 		</xsl:param>
 		<xsl:param name="alert">
-			<xsl:call-template name="xforms:alert">
+			<xsl:call-template name="ui:alert">
 				<xsl:with-param name="attribute" select="$attribute" />
 			</xsl:call-template>
 		</xsl:param>
@@ -271,18 +271,18 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
-	<xsl:template name="xforms:secret">
+	<xsl:template name="ui:secret">
 		<xsl:param name="attribute" />
 
 		<xsl:variable name="config">
 			<secret>
-				<xsl:call-template name="xforms:label">
+				<xsl:call-template name="ui:label">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:hint">
+				<xsl:call-template name="ui:hint">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:alert">
+				<xsl:call-template name="ui:alert">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
 			</secret>
@@ -295,18 +295,18 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
-	<xsl:template name="xforms:textarea">
+	<xsl:template name="ui:textarea">
 		<xsl:param name="attribute" />
 
 		<xsl:variable name="config">
 			<textarea>
-				<xsl:call-template name="xforms:label">
+				<xsl:call-template name="ui:label">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:hint">
+				<xsl:call-template name="ui:hint">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:alert">
+				<xsl:call-template name="ui:alert">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
 			</textarea>
@@ -319,7 +319,7 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
-	<xsl:template name="xforms:select1">
+	<xsl:template name="ui:select1">
 		<xsl:param name="attribute" />
 		<xsl:param name="ref" select="." />
 		<xsl:param name="with-none" />
@@ -355,7 +355,7 @@
 			</xsl:if>
 			<xsl:choose>
 				<xsl:when test="$items.boolean">
-					<xsl:call-template name="xforms:item">
+					<xsl:call-template name="ui:item">
 						<xsl:with-param name="label.content">
 							<xsl:apply-templates select="." mode="lang:label" />
 						</xsl:with-param>
@@ -364,7 +364,7 @@
 				</xsl:when>
 				<xsl:when test="$items.text">
 					<xsl:for-each select="$items.text">
-						<xsl:call-template name="xforms:item">
+						<xsl:call-template name="ui:item">
 							<xsl:with-param name="label.content">
 								<xsl:apply-templates select="." mode="lang:text" />
 							</xsl:with-param>
@@ -373,17 +373,17 @@
 					</xsl:for-each>
 				</xsl:when>
 				<xsl:when test="$items.tree">
-					<xsl:apply-templates select="." mode="xforms:item.tree">
+					<xsl:apply-templates select="." mode="ui:item.tree">
 						<xsl:with-param name="tree" select="$items.tree" />
 					</xsl:apply-templates>
 				</xsl:when>
 				<xsl:when test="$items.node">
-					<xsl:apply-templates select="$items.node" mode="xforms:item">
+					<xsl:apply-templates select="$items.node" mode="ui:item">
 						<xsl:with-param name="caller" select="." />
 					</xsl:apply-templates>
 				</xsl:when>
 				<xsl:when test="$items.form">
-					<xsl:apply-templates select="document(following::xforms:instance[@id = local-name(current())][last()]/@src)/*/*[name() = $items.form]" mode="xforms:item">
+					<xsl:apply-templates select="document(following::xforms:instance[@id = local-name(current())][last()]/@src)/*/*[name() = $items.form]" mode="ui:item">
 						<xsl:with-param name="caller" select="." />
 					</xsl:apply-templates>
 				</xsl:when>
@@ -403,15 +403,15 @@
 						<xsl:value-of select="$appearance" />
 					</xsl:attribute>
 				</xsl:if>
-				<xsl:call-template name="xforms:label">
+				<xsl:call-template name="ui:label">
 					<xsl:with-param name="ref" select="$ref" />
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
 				<xsl:copy-of select="$items" />
-				<xsl:call-template name="xforms:hint">
+				<xsl:call-template name="ui:hint">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:alert">
+				<xsl:call-template name="ui:alert">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
 			</select1>
@@ -424,7 +424,7 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
-	<xsl:template name="xforms:select">
+	<xsl:template name="ui:select">
 		<xsl:param name="attribute" />
 		<xsl:param name="ref" select="." />
 		<xsl:param name="items.boolean" />
@@ -434,7 +434,7 @@
 		<xsl:param name="items">
 			<xsl:choose>
 				<xsl:when test="$items.boolean">
-					<xsl:call-template name="xforms:item">
+					<xsl:call-template name="ui:item">
 						<xsl:with-param name="label.content">
 							<xsl:apply-templates select="." mode="lang:label" />
 						</xsl:with-param>
@@ -443,7 +443,7 @@
 				</xsl:when>
 				<xsl:when test="$items.text">
 					<xsl:for-each select="$items.text">
-						<xsl:call-template name="xforms:item">
+						<xsl:call-template name="ui:item">
 							<xsl:with-param name="label.content">
 								<xsl:apply-templates select="." mode="lang:text" />
 							</xsl:with-param>
@@ -452,13 +452,13 @@
 					</xsl:for-each>
 				</xsl:when>
 				<xsl:when test="$items.node">
-					<xsl:apply-templates select="$items.node" mode="xforms:item">
+					<xsl:apply-templates select="$items.node" mode="ui:item">
 						<xsl:with-param name="caller" select="." />
 					</xsl:apply-templates>
 				</xsl:when>
 				<xsl:when test="$items.form">
 					<xsl:variable name="local-name" select="local-name()" />
-					<xsl:apply-templates select="document(following::xforms:instance[@id = local-name(current())][last()]/@src)/*/*[name() = $items.form]" mode="xforms:item">
+					<xsl:apply-templates select="document(following::xforms:instance[@id = local-name(current())][last()]/@src)/*/*[name() = $items.form]" mode="ui:item">
 						<xsl:with-param name="caller" select="." />
 					</xsl:apply-templates>
 				</xsl:when>
@@ -478,15 +478,15 @@
 						<xsl:value-of select="$appearance" />
 					</xsl:attribute>
 				</xsl:if>
-				<xsl:call-template name="xforms:label">
+				<xsl:call-template name="ui:label">
 					<xsl:with-param name="ref" select="$ref" />
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
 				<xsl:copy-of select="$items" />
-				<xsl:call-template name="xforms:hint">
+				<xsl:call-template name="ui:hint">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:alert">
+				<xsl:call-template name="ui:alert">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
 			</select>
@@ -499,17 +499,17 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
-	<xsl:template name="xforms:upload">
+	<xsl:template name="ui:upload">
 		<xsl:param name="attribute" />
 		<xsl:variable name="config">
 			<upload>
-				<xsl:call-template name="xforms:label">
+				<xsl:call-template name="ui:label">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:hint">
+				<xsl:call-template name="ui:hint">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
-				<xsl:call-template name="xforms:alert">
+				<xsl:call-template name="ui:alert">
 					<xsl:with-param name="attribute" select="$attribute" />
 				</xsl:call-template>
 			</upload>
