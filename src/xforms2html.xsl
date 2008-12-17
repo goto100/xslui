@@ -111,7 +111,7 @@
 				 <xsl:attribute name="enctype">multipart/form-data</xsl:attribute>
 			</xsl:if>
 
-			<xsl:apply-templates select="../xforms:instance[1]" />
+			<xsl:apply-templates select="../xforms:instance" />
 
 		</form>
 	</xsl:template>
