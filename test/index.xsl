@@ -25,15 +25,15 @@
 			<xsl:with-param name="segment-end" select="20" />
 			<xsl:with-param name="segment-total" select="300" />
 			<xsl:with-param name="selectable" select="true()" />
-			<xsl:with-param name="cols-node">
-				<ui:col name="title" />
-				<ui:col name="date" />
-				<ui:col name="edit" class="operation" />
-				<ui:col name="delete" class="operation" />
-			</xsl:with-param>
 			<xsl:with-param name="operations-node">
-				<ui:operation name="update" action="?update" />
-				<ui:operation name="delete" action="?delete" />
+				<button ui:name="update" ui:action="?update" />
+				<button ui:name="delete" ui:action="?delete" />
+			</xsl:with-param>
+			<xsl:with-param name="cols-node">
+				<th ui:name="title" />
+				<th ui:name="date" />
+				<th ui:name="edit" class="operation" />
+				<th ui:name="delete" class="operation" />
 			</xsl:with-param>
 			<xsl:with-param name="rows-node">
 				<xsl:apply-templates select="rdf:Description" mode="ui:datagrid-row" />

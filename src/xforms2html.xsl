@@ -166,7 +166,7 @@
 		<div>
 			<xsl:attribute name="class">
 				<xsl:value-of select="@class" /><xsl:text> </xsl:text>
-				<xsl:if test="$bind/@type = 'xs:date'">datepicker </xsl:if>
+				<xsl:if test="@type = 'xs:date'">datepicker </xsl:if>
 				<xsl:text>input</xsl:text>
 			</xsl:attribute>
 			<xsl:apply-templates select="xforms:label">

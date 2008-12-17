@@ -15,7 +15,22 @@ page.insertBefore(pi, page.childNodes.item(0));
 
 
 
-if (request.search.path && request.search.path[1] == "edit") {
+if (request.search.path && request.search.path[0] == "new") {
+	page.documentElement = page.createElement("xforms:model");
+	page.documentElement.setAttribute("xmlns:xforms", "http://www.w3.org/2002/xforms");
+	var instance = page.createElement("xforms:instance");
+	instance.appendChild(dao.emptyPojoDom);
+	var submission = page.createElement("xforms:submission");
+	submission.setAttribute("action", "");
+	submission.setAttribute("method", "put");
+	page.documentElement.appendChild(instance);
+	page.documentElement.appendChild(submission);
+
+	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"edit.xsl\"");
+	page.insertBefore(pi, page.childNodes[1]);	
+	Response.ContentType = "text/xml";
+	write(page.xml)
+} else if (request.search.path && request.search.path[1] == "edit") {
 	var article = dao.get(parseInt(request.search.path[0]), true);
 
 	page.documentElement = page.createElement("xforms:model");
@@ -29,7 +44,7 @@ if (request.search.path && request.search.path[1] == "edit") {
 	page.documentElement.appendChild(submission);
 
 	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"edit.xsl\"");
-	page.insertBefore(pi, page.childNodes.item(1));	
+	page.insertBefore(pi, page.childNodes[1]);	
 	Response.ContentType = "text/xml";
 	write(page.xml)
 } else {
@@ -51,7 +66,7 @@ if (request.search.path && request.search.path[1] == "edit") {
 	}
 
 	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"index.xsl\"");
-	page.insertBefore(pi, page.childNodes.item(1));
+	page.insertBefore(pi, page.childNodes[1]);
 	
 	Response.ContentType = "text/xml";
 	write(page.xml)

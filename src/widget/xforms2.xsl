@@ -19,27 +19,44 @@
 	xmlns="http://www.w3.org/2002/xforms"
 >
 
-	<xsl:template name="xforms:input">
+	<xsl:import href="../xforms2html.xsl" />
+
+	<xsl:template name="ui:input">
 		<xsl:param name="ref" select="." />
-			<input>
-				<label>fads</label>
-				<value>fad</value>
-			</input>
 
 		<xsl:variable name="config">
+			<input>
+				<label>fads</label>
+			</input>
 		</xsl:variable>
 
-		<xsl:apply-templates select="exslt:node-set($config)/xforms:input">
+		<xsl:apply-templates select="exslt:node-set($config)/*">
+			<xsl:with-param name="model" select="$ref/ancestor::xforms:model" />
+			<xsl:with-param name="ref" select="$ref" />
+		</xsl:apply-templates>
+	</xsl:template>
+
+	<xsl:template name="ui:textarea">
+		<xsl:param name="ref" select="." />
+
+		<xsl:variable name="config">
+			<textarea>
+				<label>fads</label>
+			</textarea>
+		</xsl:variable>
+
+		<xsl:apply-templates select="exslt:node-set($config)/*">
+			<xsl:with-param name="model" select="$ref/ancestor::xforms:model" />
 			<xsl:with-param name="ref" select="$ref" />
 		</xsl:apply-templates>
 	</xsl:template>
 
 	<xsl:template match="node() | @*" mode="ui:input">
-		<xsl:call-template name="xforms:input" />
+		<xsl:call-template name="ui:input" />
 	</xsl:template>
 
 	<xsl:template match="node() | @*" mode="ui:textarea">
-		<xsl:call-template name="xforms:input" />
+		<xsl:call-template name="ui:textarea" />
 	</xsl:template>
 
 	<xsl:template match="xforms:submission">

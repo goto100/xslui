@@ -44,12 +44,6 @@
 		</html>
 	</xsl:template>
 
-	<xsl:template match="/rdf:RDF">
-		<xsl:apply-templates select="xforms:model/xforms:submission" />
-		<xsl:apply-templates select="page" mode="bar" />
-		<xsl:call-template name="ui:datagrid" />
-	</xsl:template>
-
 	<xsl:template match="xforms:model">
 		<xsl:apply-templates select="xforms:submission" />
 	</xsl:template>
