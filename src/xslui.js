@@ -208,7 +208,20 @@ Datagrid.bind = function(node) {
 	}
 }
 
+// =========================================================================
+// ui/Datepicker.js
+// =========================================================================
 
+function DatePicker() {
+	var datePicker = document.createElement("div");
+	datePicker.innerHTML = "<select><option>fads</option></select>";
+	document.documentElement.appendChild(datePicker);
+	DOM.bind(datePicker);
+	return datePicker;
+}
+DatePicker.prototype.load = function() {
+	
+}
 
 
 
@@ -237,4 +250,12 @@ function initUI() {
 	document.querySelectorAll("form.datagrid").forEach(Datagrid.bind);
 	document.querySelectorAll("div.window").forEach(Window.bind);
 	document.querySelectorAll("ul.tree").forEach(Tree.bind);
+	document.querySelectorAll("label.date.input").forEach(function(input) {
+		input.addEventListener("click", function(event) {
+			var datePicker = new DatePicker();
+			datePicker.style.position = "absolute";
+			datePicker.style.left = event.target.offsetLeft + "px";
+			datePicker.style.top = event.target.offsetTop + event.target.offsetHeight + "px";
+		}, false);
+	});
 }

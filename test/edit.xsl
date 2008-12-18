@@ -22,7 +22,12 @@
 
 	<xsl:template match="xforms:instance/rdf:Description">
 		<xsl:apply-templates select="dc:title" mode="ui:input" />
+		<xsl:call-template name="ui:input">
+			<xsl:with-param name="ref" select="dc:date" />
+			<xsl:with-param name="type">xs:date</xsl:with-param>
+		</xsl:call-template>
 		<xsl:apply-templates select="dc:summary" mode="ui:textarea" />
+		<xsl:apply-templates select="dc:description" mode="ui:textarea" />
 	</xsl:template>
 
 </xsl:stylesheet>
