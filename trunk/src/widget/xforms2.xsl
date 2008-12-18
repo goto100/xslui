@@ -15,40 +15,36 @@
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 
 	xmlns:ui="http://imyui.cn/xslui"
-	xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns="http://www.w3.org/2002/xforms"
 >
 
 	<xsl:import href="../xforms2html.xsl" />
 
 	<xsl:template name="ui:input">
 		<xsl:param name="ref" select="." />
+		<xsl:param name="type" />
+		<xsl:param name="label">
+			<xsl:apply-templates select="$ref" mode="ui:label" />
+		</xsl:param>
+		<xsl:param name="class">
+			<xsl:if test="$type = 'xs:date'">date </xsl:if>
+		</xsl:param>
 
-		<xsl:variable name="config">
-			<input>
-				<label>fads</label>
-			</input>
-		</xsl:variable>
-
-		<xsl:apply-templates select="exslt:node-set($config)/*">
-			<xsl:with-param name="model" select="$ref/ancestor::xforms:model" />
-			<xsl:with-param name="ref" select="$ref" />
-		</xsl:apply-templates>
+		<label class="{concat($class, 'input')}">
+			<xsl:if test="$label"><strong><xsl:value-of select="$label" />: </strong></xsl:if>
+			<input type="text" value="{$ref}" />
+		</label>
 	</xsl:template>
 
 	<xsl:template name="ui:textarea">
 		<xsl:param name="ref" select="." />
+		<xsl:param name="label">
+			<xsl:apply-templates select="$ref" mode="ui:label" />
+		</xsl:param>
 
-		<xsl:variable name="config">
-			<textarea>
-				<label>fads</label>
-			</textarea>
-		</xsl:variable>
-
-		<xsl:apply-templates select="exslt:node-set($config)/*">
-			<xsl:with-param name="model" select="$ref/ancestor::xforms:model" />
-			<xsl:with-param name="ref" select="$ref" />
-		</xsl:apply-templates>
+		<label class="textarea">
+			<xsl:if test="$label"><strong><xsl:value-of select="$label" />: </strong></xsl:if>
+			<textarea><xsl:value-of select="$ref" /></textarea>
+		</label>
 	</xsl:template>
 
 	<xsl:template match="node() | @*" mode="ui:input">

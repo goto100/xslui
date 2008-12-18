@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE dictionary [
+	<!ELEMENT label ANY >
+	<!ATTLIST label id ID #REQUIRED>
+]>
+<dictionary xml:lang="zh-cn"
+	xmlns:lang="http://imyui.cn/i18n-xsl"
+	xmlns="http://imyui.cn/i18n-xsl"
+>
+	<item prefix="category" namespace-uri="http://imyui/xslui/category" />
+	<item prefix="user" namespace-uri="http://imyui/xslui/user" />
+	<item prefix="file" namespace-uri="http://imyui/xslui/file" />
+	<item prefix="search" namespace-uri="http://imyui/xslui/search" />
+
+	<label id="search:key">key words</label>
+
+	<label id="category:title">title</label>
+	<label id="category:parent">parent category</label>
+	<label id="category:url">URL</label>
+
+	<label id="file:src">file</label>
+	<label id="file:size">size</label>
+
+	<label id="user:user">user</label>
+	<label id="user:registrationDate">registration date</label>
+	<label id="user:logins.total">logins</label>
+	<label id="user:lastLoggedIn">last logged in</label>
+	<label id="user:username">username</label>
+	<label id="user:username.like" ref="user:username" />
+	<label id="user:name">name</label>
+	<label id="user:email">E'mail</label>
+	<label id="user:phone">phone</label>
+	<label id="user:address">address</label>
+	<label id="user:postcode">postcode</label>
+	<label id="user:account.integral">integral</label>
+	<label id="user:account.balance">balance</label>
+	<label id="user:roles">roles</label>
+	<label id="user:urls">urls</label>
+	<label id="user:role">role</label>
+
+	<label id="title">title</label>
+	<label id="description">description</label>
+	<label id="category">category</label>
+	<label id="summary">summary</label>
+	<label id="content">content</label>
+	<label id="type">type</label>
+	<label id="date">date</label>
+	<label id="time">time</label>
+	<label id="statistics">statistics</label>
+	<label id="lastUpdate">last update</label>
+	<label id="password">password</label>
+	<label id="setting">setting</label>
+	<label id="config">config</label>
+	<label id="views">views</label>
+	<label id="permission">permission</label>
+	<label id="passwordConfirm">password confirm</label>
+	<label id="verificationCode">verification code</label>
+	<label id="period">period</label>
+	<label id="period.start">start at</label>
+	<label id="period.end">end at</label>
+	<label id="date.start">start at</label>
+	<label id="date.end">end at</label>
+	<label id="page.first">first page</label>
+	<label id="page.last">last page</label>
+	<label id="page.previous">previous page</label>
+	<label id="page.next">next page</label>
+	<label id="page.nth">page <label name="index" /></label>
+
+	<label id="all">all</label>
+	<label id="none">none</label>
+	<label id="empty">empty</label>
+	<label id="true">true</label>
+	<label id="false">false</label>
+	<label id="yes">yes</label>
+	<label id="no">no</label>
+	<label id="enabled">enabled</label>
+	<label id="enabled.true">enabled</label>
+	<label id="enabled.false">unabled</label>
+	<label id="closed">closed</label>
+	<label id="closed.true">closed</label>
+	<label id="closed.false">openning</label>
+	<label id="opened">opened</label>
+	<label id="opened.true">opened</label>
+	<label id="opened.false">closed</label>
+	<label id="used">used</label>
+	<label id="used.true">used</label>
+	<label id="used.false">not used</label>
+	<label id="published">published</label>
+	<label id="published.true">published</label>
+	<label id="published.false">not published</label>
+
+	<label id="post">post</label>
+	<label id="add">add</label>
+	<label id="create">create</label>
+	<label id="update">update</label>
+	<label id="edit">edit</label>
+	<label id="modify">modify</label>
+	<label id="view">view</label>
+	<label id="delete">delete</label>
+	<label id="process">process</label>
+	<label id="recover">recover</label>
+	<label id="recharge">recharge</label>
+	<label id="submit">submit</label>
+	<label id="confirm">confirm</label>
+	<label id="search">search</label>
+	<label id="moveUp">move up</label>
+	<label id="moveDown">move down</label>
+	<label id="select-all">select all</label>
+
+	<label id="sunday">sunday</label>
+	<label id="monday">monday</label>
+	<label id="tuesday">tuesday</label>
+	<label id="wednesday">wednesday</label>
+	<label id="thursday">thursday</label>
+	<label id="friday">friday</label>
+	<label id="saturday">saturday</label>
+	<label id="morning">morning</label>
+	<label id="afternoon">afternoon</label>
+	<label id="hour">hour</label>
+	<label id="hours">hours</label>
+	<label id="n-hours-before"><label name="n" /> hours before</label>
+	<label id="minute">minute</label>
+	<label id="minutes">minutes</label>
+	<label id="n-minutes-before"><label name="n" />minutes before</label>
+	<label id="second">second</label>
+	<label id="seconds">seconds</label>
+	<label id="n-seconds-before"><label name="n" />seconds before</label>
+	<label id="day">day</label>
+	<label id="days">days</label>
+	<label id="n-days-before"><label name="n" />days before</label>
+	<label id="1-days-before" ref="yesterday" />
+	<label id="0-days-before" ref="today" />
+	<label id="yesterday">yesterday</label>
+	<label id="today">today</label>
+	<label id="tomorrow">tomorrow</label>
+	<label id="dayAfterTomorrow">day after tomorrow</label>
+	<label id="month">month</label>
+	<label id="months">months</label>
+	<label id="year">year</label>
+	<label id="years">years</label>
+	<label id="date">date</label>
+
+</dictionary>
