@@ -14,7 +14,7 @@
 
 	<xsl:param name="ui:config" select="document('')/*/ui:config" />
 
-	<xsl:template name="ui:label">
+	<xsl:template name="ui:text">
 		<xsl:param name="name" />
 		<xsl:param name="param" />
 		<xsl:call-template name="lang:label">
@@ -23,6 +23,10 @@
 			<xsl:with-param name="name" select="$name" />
 			<xsl:with-param name="param" select="$param" />
 		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template name="ui:format-date">
+		<xsl:param name="date" />
 	</xsl:template>
 
 </xsl:stylesheet>

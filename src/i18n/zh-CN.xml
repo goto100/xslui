@@ -118,29 +118,28 @@
 	<label id="saturday">星期六</label>
 	<label id="morning">上午</label>
 	<label id="afternoon">下午</label>
-	<label id="hour">小时</label>
-	<label id="hours">小时</label>
-	<label id="n-hours-before"><label name="n" />小时前</label>
-	<label id="minute">分钟</label>
-	<label id="minutes">分钟</label>
-	<label id="n-minutes-before"><label name="n" />分钟前</label>
-	<label id="second">秒</label>
-	<label id="seconds">秒</label>
-	<label id="n-seconds-before"><label name="n" />秒前</label>
+	<label id="date">日期</label>
+	<label id="year">年</label>
+	<label id="n-years"><label name="year" />年</label>
+	<label id="month">月</label>
+	<label id="n-months"><label name="month" />个月</label>
 	<label id="day">日</label>
-	<label id="days">日</label>
-	<label id="n-days-before"><label name="n" />天前</label>
-	<label id="2-days-before">前天</label>
-	<label id="1-days-before" ref="yesterday" />
-	<label id="0-days-before" ref="today" />
+	<label id="n-days"><label name="day" />天</label>
+	<label id="hour">小时</label>
+	<label id="n-hours"><label name="hour" />小时</label>
+	<label id="minute">分钟</label>
+	<label id="n-minutes"><label name="minute" />分钟</label>
+	<label id="second">秒</label>
+	<label id="n-seconds"><label name="second" />秒</label>
+	<label id="2-days-ago">前天</label>
+	<label id="1-days-ago" ref="yesterday" />
+	<label id="0-days-ago" ref="today" />
 	<label id="yesterday">昨天</label>
 	<label id="today">今天</label>
 	<label id="tomorrow">明天</label>
 	<label id="dayAfterTomorrow">后天</label>
-	<label id="month">月</label>
-	<label id="months">月</label>
-	<label id="year">年</label>
-	<label id="years">年</label>
-	<label id="date">日期</label>
+	<label id="duration-ago"><label ref="duration" />前</label>
+	<label id="duration"><label ref="n-years" /><label ref="n-months" /><label ref="n-days" /><label ref="n-hours" /><label ref="n-minutes" /><label ref="n-seconds" /></label>
+	<label id="from-date-to-date"><label name="from.year" />
 
 </dictionary>
