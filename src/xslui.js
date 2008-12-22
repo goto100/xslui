@@ -102,6 +102,41 @@ Tree.bind = function(element, setting) {
 
 
 // =========================================================================
+// ui/Tabs.js
+// =========================================================================
+
+function Tabs() {
+	this.tabs;
+	this.tabHandles;
+	this.activedIndex = 0;
+}
+
+Tabs.bind = function(node) {
+	base2.lang.extend(node, new Tabs());
+	node.tabs = node.querySelectorAll("dd");
+	node.tabHandles = node.querySelectorAll("dt");
+	node.load();
+}
+Tabs.prototype.load = function() {
+	var tabs = this.tabs;
+	this.tabHandles.forEach(function(handle, i) {
+		handle.addEventListener("click", function() {
+			tabs.forEach(function(tab) {
+				tab.style.display = "none";
+			});
+			handle.nextSibling.nextSibling.style.display = "";
+		}, false);
+	});
+	this.tabs.forEach(function(tab) {
+		tab.style.display = "none";
+	});
+	this.tabs.item(0).style.display = "";
+}
+Tabs.prototype.show = function(tab) {
+	tab.style.display = "";
+}
+
+// =========================================================================
 // ui/Window.js
 // =========================================================================
 
@@ -249,6 +284,7 @@ function initMultipleSubmission() {
 function initUI() {
 	document.querySelectorAll("form.datagrid").forEach(Datagrid.bind);
 	document.querySelectorAll("div.window").forEach(Window.bind);
+	document.querySelectorAll("dl.tabs").forEach(Tabs.bind);
 	document.querySelectorAll("ul.tree").forEach(Tree.bind);
 	document.querySelectorAll("label.date.input").forEach(function(input) {
 		input.addEventListener("click", function(event) {
