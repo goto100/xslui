@@ -3,10 +3,9 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:exslt="http://exslt.org/common"
 	xmlns:str="http://exslt.org/strings"
+	xmlns:date="http://exslt.org/dates-and-times"
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 >
-
-	<xsl:import href="exslt/str/replace.xsl" />
 
 	<xsl:param name="lang:labels-path">i18n/</xsl:param>
 	<xsl:param name="lang:lang-name">en</xsl:param>
@@ -169,12 +168,20 @@
 	</xsl:template>
 
 	<xsl:template name="lang:format-date">
+		<xsl:param name="labels-path" />
+		<xsl:param name="lang-name" />
+		<xsl:param name="labels" select="document(concat($labels-path, $lang-name, '.xml'))/*" />
 		<xsl:param name="date" />
 
-		
+		<xsl:call-template name="date:format-date">
+			<xsl:with-param name="date-time" select="$date" />
+			<xsl:with-param name="pattern" select="$labels/lang:date-format-long" />
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="lang:format-duration">
+		<xsl:param name="labels-path" />
+		<xsl:param name="lang-name" />
 		<xsl:param name="duration" />
 
 		<xsl:variable name="date">
@@ -201,6 +208,8 @@
 		</xsl:variable>
 
 		<xsl:call-template name="lang:label">
+			<xsl:with-param name="labels-path" select="$labels-path" />
+			<xsl:with-param name="lang-name" select="$lang-name" />
 			<xsl:with-param name="name">duration</xsl:with-param>
 			<xsl:with-param name="param" select="exslt:node-set($param)/*/@*" />
 		</xsl:call-template>
@@ -214,20 +223,20 @@
 
 		<xsl:choose>
 			<xsl:when test="contains($date, 'Y')">
-				<xsl:call-template name="ui:date-duration">
+				<xsl:call-template name="lang:date-duration">
 					<xsl:with-param name="date" select="substring-after($date, 'Y')" />
 					<xsl:with-param name="year" select="substring-before($date, 'Y')" />
 				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="contains($date, 'M')">
-				<xsl:call-template name="ui:date-duration">
+				<xsl:call-template name="lang:date-duration">
 					<xsl:with-param name="date" select="substring-after($date, 'M')" />
 					<xsl:with-param name="year" select="$year" />
 					<xsl:with-param name="month" select="substring-before($date, 'M')" />
 				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="contains($date, 'D')">
-				<xsl:call-template name="ui:date-duration">
+				<xsl:call-template name="lang:date-duration">
 					<xsl:with-param name="year" select="$year" />
 					<xsl:with-param name="month" select="$month" />
 					<xsl:with-param name="day" select="substring-before($date, 'D')" />
@@ -247,20 +256,20 @@
 
 		<xsl:choose>
 			<xsl:when test="contains($time, 'H')">
-				<xsl:call-template name="ui:time-duration">
+				<xsl:call-template name="lang:time-duration">
 					<xsl:with-param name="time" select="substring-after($time, 'H')" />
 					<xsl:with-param name="hour" select="substring-before($time, 'H')" />
 				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="contains($time, 'M')">
-				<xsl:call-template name="ui:time-duration">
+				<xsl:call-template name="lang:time-duration">
 					<xsl:with-param name="time" select="substring-after($time, 'M')" />
 					<xsl:with-param name="hour" select="$hour" />
 					<xsl:with-param name="minute" select="substring-before($time, 'M')" />
 				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="contains($time, 'S')">
-				<xsl:call-template name="ui:time-duration">
+				<xsl:call-template name="lang:time-duration">
 					<xsl:with-param name="hour" select="$hour" />
 					<xsl:with-param name="minute" select="$minute" />
 					<xsl:with-param name="second" select="substring-before($time, 'S')" />

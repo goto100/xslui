@@ -7,6 +7,16 @@
 	xmlns:lang="http://imyui.cn/i18n-xsl"
 	xmlns="http://imyui.cn/i18n-xsl"
 >
+
+	<date-format-full>yyyy年M月d日EEEE</date-format-full>
+    <date-format-long>yyyy年M月d日</date-format-long>
+    <date-format-medium>yyyy-M-d</date-format-medium>
+    <date-format-short>yy-M-d</date-format-short>
+    <time-format-full>ahh时mm分ss秒 z</time-format-full>
+    <time-format-long>ahh时mm分ss秒</time-format-long>
+    <time-format-medium>ahh:mm:ss</time-format-medium>
+    <time-format-short>ah:mm</time-format-short>
+
 	<item prefix="category" namespace-uri="http://imyui/xslui/category" />
 	<item prefix="user" namespace-uri="http://imyui/xslui/user" />
 	<item prefix="file" namespace-uri="http://imyui/xslui/file" />
@@ -119,6 +129,7 @@
 	<label id="morning">上午</label>
 	<label id="afternoon">下午</label>
 	<label id="date">日期</label>
+	<label id="until-now">至今</label>
 	<label id="year">年</label>
 	<label id="n-years"><label name="year" />年</label>
 	<label id="month">月</label>
@@ -140,6 +151,5 @@
 	<label id="dayAfterTomorrow">后天</label>
 	<label id="duration-ago"><label ref="duration" />前</label>
 	<label id="duration"><label ref="n-years" /><label ref="n-months" /><label ref="n-days" /><label ref="n-hours" /><label ref="n-minutes" /><label ref="n-seconds" /></label>
-	<label id="from-date-to-date"><label name="from.year" />
 
 </dictionary>
