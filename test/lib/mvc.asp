@@ -2,6 +2,8 @@
 <script language="javascript" runat="server">
 eval(base2.namespace);
 JavaScript.bind(this);
+Function.bind = base2.lang.bind;
+
 
 function write() {
 	var str = "";
