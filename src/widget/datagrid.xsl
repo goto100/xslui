@@ -13,7 +13,6 @@
 	<xsl:import href="../exslt/date/format-date.xsl" />
 	<xsl:import href="../i18n.xsl" />
 	<xsl:import href="pagebar.xsl" />
-	<xsl:import href="format-duration.xsl" />
 
 	<xsl:template name="ui:datagrid">
 		<xsl:param name="segment-total" select="0" />
