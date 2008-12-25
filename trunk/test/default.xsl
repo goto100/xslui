@@ -15,6 +15,7 @@
 
 	<xsl:import href="../src/function.xsl" />
 	<xsl:import href="../src/i18n.xsl" />
+	<xsl:import href="../src/xslui.xsl" />
 
 	<xsl:output method="html" indent="yes" encoding="utf-8" />
 

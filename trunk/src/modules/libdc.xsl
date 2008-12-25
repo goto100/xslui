@@ -9,14 +9,14 @@
 >
 
 	<xsl:template match="dc:date" mode="ui:duration">
-		<xsl:param name="now">2008-08-08T20:08:08Z</xsl:param>
+		<xsl:param name="now">2008-12-26T20:08:08Z</xsl:param>
 		<xsl:param name="duration">
 			<xsl:call-template name="date:difference">
 				<xsl:with-param name="start" select="." />
 				<xsl:with-param name="end" select="$now" />
 			</xsl:call-template>
 		</xsl:param>
-		<xsl:param name="range">P365D</xsl:param>
+		<xsl:param name="range">P14D</xsl:param>
 
 		<xsl:variable name="result">
 			<xsl:call-template name="date:add-duration">
@@ -34,7 +34,8 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:call-template name="ui:format-duration">
-					<xsl:with-param name="duration" select="$duration" />
+					<xsl:with-param name="start" select="." />
+					<xsl:with-param name="end" select="$now" />
 				</xsl:call-template>
 			</xsl:otherwise>
 		</xsl:choose>
