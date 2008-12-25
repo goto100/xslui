@@ -5,13 +5,13 @@
 <!--#include file="lib/mvc.asp" -->
 <script language="javascript" runat="server">
 
+var XML_PI = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
+
 var request = new HttpRequest();
 var dao = new XMLDao();
 dao.path = Server.MapPath("/xslui/test/data.xml");
 dao.load();
 var page = new XMLDocument();
-var pi = page.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"utf-8\"");
-page.insertBefore(pi, page.childNodes.item(0));
 
 
 
@@ -27,9 +27,9 @@ if (request.search.path && request.search.path[0] == "new") {
 	page.documentElement.appendChild(submission);
 
 	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"edit.xsl\"");
-	page.insertBefore(pi, page.childNodes[1]);	
-	Response.ContentType = "text/xml";
-	write(page.xml)
+	page.insertBefore(pi, page.childNodes[0]);	
+	Response.ContentType = "text/xml"
+	write(XML_PI + page.xml)
 } else if (request.search.path && request.search.path[1] == "edit") {
 	var article = dao.get(parseInt(request.search.path[0]), true);
 
@@ -44,9 +44,9 @@ if (request.search.path && request.search.path[0] == "new") {
 	page.documentElement.appendChild(submission);
 
 	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"edit.xsl\"");
-	page.insertBefore(pi, page.childNodes[1]);	
-	Response.ContentType = "text/xml";
-	write(page.xml)
+	page.insertBefore(pi, page.childNodes[0]);	
+	Response.ContentType = "text/xml"
+	write(XML_PI + page.xml)
 } else {
 	var article = {
 		title: "abc",
@@ -66,9 +66,8 @@ if (request.search.path && request.search.path[0] == "new") {
 	}
 
 	pi = page.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"index.xsl\"");
-	page.insertBefore(pi, page.childNodes[1]);
-	
-	Response.ContentType = "text/xml";
-	write(page.xml)
+	page.insertBefore(pi, page.childNodes[0]);
+	Response.ContentType = "text/xml"
+	write(XML_PI + page.xml)
 }
 </script>
