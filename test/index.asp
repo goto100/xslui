@@ -9,7 +9,7 @@ var XML_PI = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
 
 var request = new HttpRequest();
 var dao = new XMLDao();
-dao.path = Server.MapPath("/xslui/test/data.xml");
+dao.path = Server.MapPath("data.xml");
 dao.load();
 var page = new XMLDocument();
 
