@@ -186,13 +186,13 @@ Window.prototype.open = function() {
 		this.okButton = document.createElement("button");
 		this.okButton.className = "ok";
 		this.okButton.innerHTML = "ok";
-		this.buttonPanel.appendChild(this.okButton);
+		// this.buttonPanel.appendChild(this.okButton);
 	}
 	if (this.components & Button.CANCEL == Button.CANCEL) {
 		this.cancelButton = document.createElement("button");
 		this.cancelButton.className = "cancel";
 		this.cancelButton.innerHTML = "cancel";
-		this.buttonPanel.appendChild(this.cancelButton);
+		// this.buttonPanel.appendChild(this.cancelButton);
 	}
 	if (this.draggable) {
 		Draggable.bind(this, this.heading);
@@ -261,22 +261,21 @@ DatePicker.prototype.load = function() {
 
 
 
-
-
 var host = document.body? window : document;
 host.addEventListener("DOMContentLoaded", initMultipleSubmission, false);
-host.addEventListener("DOMContentLoaded", initUI, false);
-
+host.addEventListener("DOMContentLoaded", initUI, false);	
 
 
 function initMultipleSubmission() {
-	document.querySelectorAll("form button[type=submit]").forEach(function(button) {
+	var buttons = document.querySelectorAll("form button[type=submit], form input[type=submit]");
+	buttons.forEach(function(button) {
 		button.onclick = function() {
 			button.value = button.getAttribute("value");
-			if (this.name = "__action") {
+			if (this.name == "__action") {
 				this.removeAttribute("name");
 				this.form.action = this.value;
 			}
+			button.form.submit();
 		}
 	});
 }
