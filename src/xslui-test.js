@@ -2,6 +2,7 @@ eval(base2.namespace);
 DOM.bind(document);
 DOM.EventTarget(window);
 
+// This is test version
 
 // =========================================================================
 // ui/Button.js
